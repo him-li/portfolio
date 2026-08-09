@@ -1,199 +1,35 @@
-import * as React from 'react';
-import {
-	AppBar,
-	Box,
-	Breadcrumbs,
-	Button,
-	IconButton,
-	Link,
-	Menu,
-	Toolbar,
-	Tooltip,
-	useTheme,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import LangSwitcher from './LangSwitcher';
-import { useTranslation } from 'react-i18next';
-import { HashLink } from 'react-router-hash-link';
-import { BrowserRouter } from 'react-router-dom';
-import Styles from '../styles';
-import { Socials } from './Socials';
+import { Languages, Menu, Moon, Sun, X } from "lucide-react";
+import { useState } from "react";
+import { localeNames, locales, type Locale, type Messages } from "../i18n";
+import type { Theme } from "../hooks/usePreferences";
 
-const sections = ['home', 'skills', 'projects'];
+type HeaderProps = {
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+  copy: Messages;
+};
 
-interface toggleColorMode {
-	toggleColorMode: () => void;
-}
+export function Header({ locale, setLocale, theme, setTheme, copy }: HeaderProps) {
+  const [open, setOpen] = useState(false);
+  const [languagesOpen, setLanguagesOpen] = useState(false);
+  const links = [["home", copy.nav.home], ["work", copy.nav.work], ["profile", copy.nav.profile], ["contact", copy.nav.contact]];
 
-export default function Header({ colorMode }: { colorMode: toggleColorMode }) {
-	const { t } = useTranslation();
-	const theme = useTheme();
-	const socials = Socials();
-	const { navbarlink, scrolledbar, unscrolledbar } = Styles();
-	const [activeLink, setActiveLink] = React.useState<string>('home');
-	const [scrolled, setScrolled] = React.useState<boolean>(false);
-
-	React.useEffect(() => {
-		const onScroll = () => {
-			if (window.scrollY > 50) {
-				setScrolled(true);
-			} else {
-				setScrolled(false);
-			}
-		};
-
-		window.addEventListener('scroll', onScroll);
-
-		return () => window.removeEventListener('scroll', onScroll);
-	}, []);
-
-	const onUpdateActiveLink = (value: string) => {
-		setActiveLink(value);
-		const id = `${value}`;
-		const element = document.getElementById(id);
-		if (element) {
-			element.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start',
-			});
-		}
-	};
-
-	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-		null
-	);
-
-	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorElNav(event.currentTarget);
-	};
-
-	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
-	};
-
-	return (
-		<BrowserRouter>
-			<AppBar sx={scrolled ? scrolledbar : unscrolledbar}>
-				<Toolbar disableGutters>
-					<Box
-						flexGrow={1}
-						display={{ xs: 'flex', md: 'none' }}
-						justifyContent='center'
-					>
-						<IconButton
-							size='large'
-							color='inherit'
-							aria-label='account of current user'
-							aria-controls='menu-appbar'
-							aria-haspopup='true'
-							onClick={handleOpenNavMenu}
-						>
-							<MenuIcon />
-						</IconButton>
-						<Menu
-							id='menu-appbar'
-							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: 'bottom',
-								horizontal: 'left',
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'left',
-							}}
-							open={Boolean(anchorElNav)}
-							onClose={handleCloseNavMenu}
-							sx={{
-								display: { xs: 'block', md: 'none' },
-							}}
-						>
-							<HashLink to='#connect'>
-								<Button type='button'>{t('connect')}</Button>
-							</HashLink>
-							{socials.map((social, index) => (
-								<Tooltip title={social.tooltip} key={index}>
-									<IconButton
-										href={social.url}
-										target='_blank'
-										rel='noopener noreferrer'
-										size='large'
-									>
-										<social.icon />
-									</IconButton>
-								</Tooltip>
-							))}
-						</Menu>
-					</Box>
-					<Box
-						flexGrow={1}
-						display={{ xs: 'none', md: 'flex' }}
-						alignItems='center'
-					>
-						<HashLink to='#connect'>
-							<Button
-								type='button'
-								variant='outlined'
-								color='primary'
-								className='navbutton'
-							>
-								{t('connect')}
-							</Button>
-						</HashLink>
-						{socials.map((social, index) => (
-							<Tooltip title={social.tooltip} key={index}>
-								<IconButton
-									href={social.url}
-									target='_blank'
-									rel='noopener noreferrer'
-									size='large'
-									color='default'
-								>
-									<social.icon />
-								</IconButton>
-							</Tooltip>
-						))}
-					</Box>
-
-					<Box
-						flexGrow={1}
-						display='flex'
-						alignItems='center'
-						justifyContent='flex-end'
-					>
-						<Breadcrumbs separator=''>
-							{sections.map((section, index) => (
-								<Link
-									key={index}
-									href={`#${section}`}
-									underline='none'
-									style={navbarlink}
-									sx={activeLink ? { opacity: 1 } : { opacity: 0.75 }}
-									onClick={() => onUpdateActiveLink(section)}
-								>
-									{t(`${section}`)}
-								</Link>
-							))}
-							<LangSwitcher />
-							<Tooltip
-								title={
-									theme.palette.mode === 'dark' ? 'Light Mode' : 'Dark Mode'
-								}
-							>
-								<IconButton onClick={colorMode.toggleColorMode}>
-									{theme.palette.mode === 'dark' ? (
-										<LightModeIcon />
-									) : (
-										<DarkModeIcon />
-									)}
-								</IconButton>
-							</Tooltip>
-						</Breadcrumbs>
-					</Box>
-				</Toolbar>
-			</AppBar>
-		</BrowserRouter>
-	);
+  return (
+    <header className="site-header">
+      <a className="brand" href="#home" aria-label="Xin Li — home"><span />Xin Li</a>
+      <nav className={open ? "site-nav is-open" : "site-nav"} aria-label="Primary navigation">
+        {links.map(([id, label], index) => <a href={`#${id}`} key={id} onClick={() => setOpen(false)}><small>0{index + 1}</small>{label}</a>)}
+      </nav>
+      <div className="header-actions">
+        <div className="language-picker">
+          <button className="icon-button language-trigger" aria-label={copy.common.language} aria-expanded={languagesOpen} onClick={() => setLanguagesOpen(!languagesOpen)}><Languages size={17} /><span>{localeNames[locale]}</span></button>
+          {languagesOpen && <div className="language-menu">{locales.map((item) => <button className={item === locale ? "is-active" : ""} key={item} onClick={() => { setLocale(item); setLanguagesOpen(false); }}>{localeNames[item]}</button>)}</div>}
+        </div>
+        <button className="icon-button theme-button" aria-label={copy.common.theme} onClick={() => setTheme(theme === "light" ? "dark" : "light")}>{theme === "light" ? <Moon size={17} /> : <Sun size={17} />}</button>
+        <button className="icon-button menu-button" aria-label={open ? copy.common.close : copy.common.menu} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X size={19} /> : <Menu size={19} />}</button>
+      </div>
+    </header>
+  );
 }
