@@ -2,6 +2,7 @@ import { Languages, Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { localeNames, locales, type Locale, type Messages } from "../i18n";
 import type { Theme } from "../hooks/usePreferences";
+import type { SectionId } from "../hooks/useActiveSection";
 
 type HeaderProps = {
   locale: Locale;
@@ -9,18 +10,19 @@ type HeaderProps = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   copy: Messages;
+  activeSection: SectionId;
 };
 
-export function Header({ locale, setLocale, theme, setTheme, copy }: HeaderProps) {
+export function Header({ locale, setLocale, theme, setTheme, copy, activeSection }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [languagesOpen, setLanguagesOpen] = useState(false);
-  const links = [["home", copy.nav.home], ["work", copy.nav.work], ["profile", copy.nav.profile], ["contact", copy.nav.contact]];
+  const links: Array<[SectionId, string]> = [["home", copy.nav.home], ["experience", copy.nav.experience], ["work", copy.nav.work], ["education", copy.nav.education], ["profile", copy.nav.profile], ["contact", copy.nav.contact]];
 
   return (
     <header className="site-header">
       <a className="brand" href="#home" aria-label="Xin Li — home"><span />Xin Li</a>
       <nav className={open ? "site-nav is-open" : "site-nav"} aria-label="Primary navigation">
-        {links.map(([id, label], index) => <a href={`#${id}`} key={id} onClick={() => setOpen(false)}><small>0{index + 1}</small>{label}</a>)}
+        {links.map(([id, label], index) => <a className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "location" : undefined} href={`#${id}`} key={id} onClick={() => setOpen(false)}><small>0{index + 1}</small>{label}</a>)}
       </nav>
       <div className="header-actions">
         <div className="language-picker">

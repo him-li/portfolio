@@ -1,21 +1,33 @@
 import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { Header } from "./components/Header";
 import { OrbitMark } from "./components/OrbitMark";
 import { EducationSection, ExperienceSection, ProjectsSection, SkillsSection } from "./components/ResumeSections";
 import { usePreferences } from "./hooks/usePreferences";
+import { useActiveSection } from "./hooks/useActiveSection";
 import { messages, rtlLocales } from "./i18n";
 
 export function App() {
   const { theme, setTheme, locale, setLocale } = usePreferences();
   const copy = messages[locale];
   const direction = rtlLocales.has(locale) ? "rtl" : "ltr";
+  const activeSection = useActiveSection();
+  const heroRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroCopyY = useTransform(heroProgress, [0, 1], [0, reducedMotion ? 0 : 90]);
+  const heroVisualY = useTransform(heroProgress, [0, 1], [0, reducedMotion ? 0 : -70]);
+  const heroOpacity = useTransform(heroProgress, [0, 0.82], [1, 0.22]);
 
   return (
     <div className="app" lang={locale} dir={direction}>
-      <Header {...{ locale, setLocale, theme, setTheme, copy }} />
+      <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
+      <Header {...{ locale, setLocale, theme, setTheme, copy, activeSection }} />
       <main>
-        <section className="hero section-shell" id="home">
-          <div className="hero-copy">
+        <section className="hero section-shell" id="home" ref={heroRef}>
+          <motion.div className="hero-copy" style={{ y: heroCopyY, opacity: heroOpacity }}>
             <p className="eyebrow">{copy.hero.eyebrow}</p>
             <h1>{copy.hero.titleBefore} <em>{copy.hero.titleAccent}</em> {copy.hero.titleAfter}</h1>
             <p className="hero-description">{copy.hero.description}</p>
@@ -23,11 +35,11 @@ export function App() {
               <a className="button button-primary" href="#work">{copy.hero.primary}<ArrowDown size={16} /></a>
               <a className="button button-secondary" href="/xin-li-resume.pdf" download>{copy.hero.secondary}<Download size={16} /></a>
             </div>
-          </div>
-          <div className="hero-visual">
-            <OrbitMark label={copy.hero.orbitLabel} />
+          </motion.div>
+          <motion.div className="hero-visual" style={{ y: heroVisualY, opacity: heroOpacity }}>
+            <OrbitMark label={copy.hero.orbitLabel} theme={theme} />
             <aside className="exploring-card"><small>{copy.hero.current}</small><strong>{copy.hero.currentValue}</strong></aside>
-          </div>
+          </motion.div>
           <a className="scroll-cue" href="#work"><span>{copy.common.scroll}</span><ArrowDown size={15} /></a>
         </section>
         <section className="fact-rail" aria-label="Professional summary">
