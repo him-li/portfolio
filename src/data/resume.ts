@@ -1,0 +1,98 @@
+import type { Locale } from "../i18n";
+
+type Localized = Record<Locale, string>;
+export type ProjectStatus = "featured" | "developing" | "repository";
+
+const localized = (en: string, zhCN: string, zhTW: string, he: string, ar: string): Localized => ({ en, "zh-CN": zhCN, "zh-TW": zhTW, he, ar });
+
+export const resumeLabels = {
+  experience: localized("Experience", "工作经历", "工作經歷", "ניסיון מקצועי", "الخبرة المهنية"),
+  experienceTitle: localized("A career across systems and markets.", "跨越系统与市场的职业轨迹。", "跨越系統與市場的職業軌跡。", "קריירה שחוצה מערכות ושווקים.", "مسيرة مهنية عبر الأنظمة والأسواق."),
+  viewDetails: localized("View full responsibilities", "查看完整职责", "查看完整職責", "לכל תחומי האחריות", "عرض المسؤوليات كاملة"),
+  hideDetails: localized("Hide details", "收起详情", "收起詳情", "הסתרת פרטים", "إخفاء التفاصيل"),
+  projects: localized("Selected projects", "精选项目", "精選專案", "פרויקטים נבחרים", "مشاريع مختارة"),
+  projectsTitle: localized("Products in progress, built in public.", "持续完善、逐步公开的产品。", "持續完善、逐步公開的產品。", "מוצרים בתהליך, שנבנים בגלוי.", "منتجات قيد التطوير تُبنى علناً."),
+  education: localized("Education & training", "教育与培训", "教育與培訓", "השכלה והכשרה", "التعليم والتدريب"),
+  educationTitle: localized("Places and programs that shaped the work.", "塑造工作方式的学校与课程。", "塑造工作方式的學校與課程。", "מקומות ותכניות שעיצבו את העבודה.", "أماكن وبرامج شكّلت طريقة العمل."),
+  skills: localized("Capabilities", "专业能力", "專業能力", "יכולות", "القدرات"),
+  skillsTitle: localized("A practical, cross-stack toolkit.", "实用的跨栈技术体系。", "實用的跨棧技術體系。", "ערכת כלים מעשית לרוחב ה-stack.", "مجموعة أدوات عملية عبر كامل المكدس."),
+  languages: localized("Languages", "语言", "語言", "שפות", "اللغات"),
+  featured: localized("Featured case study", "重点案例", "重點案例", "מקרה בוחן מוביל", "دراسة حالة مميزة"),
+  developing: localized("In development", "开发中", "開發中", "בפיתוח", "قيد التطوير"),
+  repository: localized("Repository available", "代码仓库可用", "程式碼倉庫可用", "המאגר זמין", "المستودع متاح"),
+  viewProject: localized("View project", "查看项目", "查看專案", "לפרויקט", "عرض المشروع"),
+} as const;
+
+export const experiences = [
+  {
+    id: "realeye",
+    company: "RealEye Labs",
+    role: localized("Software Engineer", "软件工程师", "軟體工程師", "מהנדס תוכנה", "مهندس برمجيات"),
+    location: localized("Tel Aviv, Israel", "以色列特拉维夫", "以色列特拉維夫", "תל אביב, ישראל", "تل أبيب، إسرائيل"),
+    period: "2024–2026",
+    logo: "RE",
+    color: "#272c25",
+    summary: localized("Production interfaces, schema-driven systems, REST integrations, and cross-stack debugging.", "生产级界面、Schema 驱动系统、REST 集成与跨栈调试。", "生產級介面、Schema 驅動系統、REST 整合與跨棧除錯。", "ממשקי production, מערכות מונעות-schema, אינטגרציות REST ודיבוג רוחבי.", "واجهات إنتاجية وأنظمة قائمة على المخططات وتكامل REST وتصحيح عبر المكدس."),
+    bullets: [
+      localized("Developed and maintained production web application features with React, Next.js, TypeScript, Tailwind CSS, and HeroUI, focusing on frontend implementation and UI/UX.", "使用 React、Next.js、TypeScript、Tailwind CSS 和 HeroUI 开发并维护生产级 Web 功能，重点负责前端实现与 UI/UX。", "使用 React、Next.js、TypeScript、Tailwind CSS 和 HeroUI 開發並維護生產級 Web 功能，重點負責前端實作與 UI/UX。", "פיתוח ותחזוקת יכולות production ב-React, Next.js, TypeScript, Tailwind CSS ו-HeroUI, בדגש על frontend ו-UI/UX.", "تطوير وصيانة ميزات ويب إنتاجية باستخدام React وNext.js وTypeScript وTailwind CSS وHeroUI مع التركيز على الواجهات وتجربة المستخدم."),
+      localized("Built reusable, schema-driven UI components for dynamic forms, nested objects, arrays, and configurable workflows.", "为动态表单、嵌套对象、数组和可配置工作流构建可复用的 Schema 驱动 UI 组件。", "為動態表單、巢狀物件、陣列和可設定工作流程建立可重用的 Schema 驅動 UI 元件。", "בניית רכיבי UI רב-פעמיים ומונעי-schema לטפסים דינמיים, אובייקטים מקוננים, מערכים ותהליכים ניתנים להגדרה.", "بناء مكونات واجهة قابلة لإعادة الاستخدام وقائمة على المخططات للنماذج الديناميكية والكائنات المتداخلة والمصفوفات وسير العمل القابل للتهيئة."),
+      localized("Integrated frontend applications with REST APIs and collaborated with Python/FastAPI services for retrieval, validation, and persistence.", "将前端应用与 REST API 集成，并与 Python/FastAPI 服务协作完成数据获取、验证和持久化。", "將前端應用與 REST API 整合，並與 Python/FastAPI 服務協作完成資料取得、驗證和持久化。", "אינטגרציית יישומי frontend עם REST API ושיתוף פעולה עם שירותי Python/FastAPI לשליפה, אימות ושמירת נתונים.", "تكامل تطبيقات الواجهة مع REST APIs والتعاون مع خدمات Python/FastAPI لاسترجاع البيانات والتحقق منها وحفظها."),
+      localized("Debugged API validation, application state synchronization, error handling, and MongoDB-backed data issues across the stack.", "跨前后端调试 API 校验、应用状态同步、错误处理及 MongoDB 数据问题。", "跨前後端除錯 API 驗證、應用狀態同步、錯誤處理及 MongoDB 資料問題。", "דיבוג רוחבי של אימות API, סנכרון state, טיפול בשגיאות ובעיות נתונים ב-MongoDB.", "تصحيح مشكلات التحقق من API ومزامنة حالة التطبيق ومعالجة الأخطاء وبيانات MongoDB عبر المكدس."),
+    ],
+  },
+  {
+    id: "zota",
+    company: "Zota Technology",
+    role: localized("Financial Operations Specialist", "金融运营专员", "金融營運專員", "מומחה לתפעול פיננסי", "أخصائي عمليات مالية"),
+    location: localized("Tel Aviv, Israel", "以色列特拉维夫", "以色列特拉維夫", "תל אביב, ישראל", "تل أبيب، إسرائيل"),
+    period: "2021–2023",
+    logo: "zota",
+    color: "#ef5a38",
+    summary: localized("Payment processors, partner integrations, commercial operations, and emerging markets.", "支付处理商、合作伙伴集成、商业运营与新兴市场。", "支付處理商、合作夥伴整合、商業營運與新興市場。", "מעבדי תשלום, אינטגרציות שותפים, תפעול מסחרי ושווקים מתפתחים.", "معالجو المدفوعات وتكامل الشركاء والعمليات التجارية والأسواق الناشئة."),
+    bullets: [
+      localized("Managed operational and commercial relationships with payment processors and partners across China, Southeast Asia, Latin America, and Africa.", "管理中国、东南亚、拉丁美洲和非洲支付处理商及合作伙伴的运营与商业关系。", "管理中國、東南亞、拉丁美洲和非洲支付處理商及合作夥伴的營運與商業關係。", "ניהול קשרים תפעוליים ומסחריים עם מעבדי תשלום ושותפים בסין, דרום-מזרח אסיה, אמריקה הלטינית ואפריקה.", "إدارة العلاقات التشغيلية والتجارية مع معالجي المدفوعات والشركاء في الصين وجنوب شرق آسيا وأمريكا اللاتينية وأفريقيا."),
+      localized("Supported Chinese partners in Mandarin and English across communication, pricing negotiations, and operational problem-solving.", "使用普通话和英语支持中国合作伙伴，处理跨境沟通、定价谈判与运营问题。", "使用普通話和英語支援中國合作夥伴，處理跨境溝通、定價談判與營運問題。", "תמיכה בשותפים סינים במנדרינית ובאנגלית בתקשורת, משא ומתן על תמחור ופתרון בעיות תפעוליות.", "دعم الشركاء الصينيين بالماندرين والإنجليزية في التواصل ومفاوضات التسعير وحل المشكلات التشغيلية."),
+      localized("Coordinated technical and operational requirements for payment processor integrations between internal teams and external partners.", "协调内部团队与外部合作伙伴之间支付处理商集成的技术和运营需求。", "協調內部團隊與外部合作夥伴之間支付處理商整合的技術和營運需求。", "תיאום דרישות טכניות ותפעוליות לאינטגרציות תשלום בין צוותים פנימיים לשותפים חיצוניים.", "تنسيق المتطلبات التقنية والتشغيلية لتكامل معالجي المدفوعات بين الفرق الداخلية والشركاء الخارجيين."),
+      localized("Analyzed transaction and financial data with Excel, Salesforce, and internal systems to support operations and decisions.", "使用 Excel、Salesforce 和内部系统分析交易及财务数据，为运营和业务决策提供支持。", "使用 Excel、Salesforce 和內部系統分析交易及財務資料，為營運和業務決策提供支援。", "ניתוח נתוני עסקאות ופיננסים באמצעות Excel, Salesforce ומערכות פנימיות לתמיכה בתפעול ובהחלטות.", "تحليل بيانات المعاملات والبيانات المالية باستخدام Excel وSalesforce والأنظمة الداخلية لدعم العمليات والقرارات."),
+    ],
+  },
+  {
+    id: "cnpiec",
+    company: "CNPIEC",
+    role: localized("Overseas Sales", "海外销售", "海外銷售", "מכירות בינלאומיות", "مبيعات دولية"),
+    location: localized("Beijing, China", "中国北京", "中國北京", "בייג׳ינג, סין", "بكين، الصين"),
+    period: "2019",
+    logo: "中图",
+    color: "#b82032",
+    summary: localized("Publishing, contract negotiations, and multilingual coordination for Middle Eastern exhibitors.", "出版、合同谈判及面向中东参展商的多语言协调。", "出版、合約談判及面向中東參展商的多語言協調。", "הוצאה לאור, משא ומתן חוזי ותיאום רב-לשוני למציגים מהמזרח התיכון.", "النشر ومفاوضات العقود والتنسيق متعدد اللغات للعارضين من الشرق الأوسط."),
+    bullets: [localized("Managed copyright-related client coordination and contract negotiations; provided Arabic, English, and Mandarin translation for Middle Eastern exhibitors.", "负责版权相关客户协调与合同谈判，并为中东参展商提供阿拉伯语、英语和普通话翻译。", "負責版權相關客戶協調與合約談判，並為中東參展商提供阿拉伯語、英語和普通話翻譯。", "ניהול תיאום לקוחות ומשא ומתן חוזי בנושאי זכויות יוצרים; תרגום בערבית, אנגלית ומנדרינית למציגים מהמזרח התיכון.", "إدارة تنسيق العملاء ومفاوضات العقود المتعلقة بحقوق النشر، وتقديم الترجمة بالعربية والإنجليزية والماندرين للعارضين من الشرق الأوسط.")],
+  },
+] as const;
+
+export const education = [
+  { id: "huji", type: "degree", period: "2020–2021", image: "/assets/education/hebrew-university.jpg", school: localized("The Hebrew University of Jerusalem", "耶路撒冷希伯来大学", "耶路撒冷希伯來大學", "האוניברסיטה העברית בירושלים", "الجامعة العبرية في القدس"), title: localized("M.A., Middle Eastern Studies", "中东研究硕士", "中東研究碩士", "M.A. בלימודי המזרח התיכון", "ماجستير في دراسات الشرق الأوسط") },
+  { id: "blcu", type: "degree", period: "2016–2020", image: "/assets/education/blcu.jpg", school: localized("Beijing Language and Culture University", "北京语言大学", "北京語言大學", "אוניברסיטת בייג׳ינג לשפה ותרבות", "جامعة بكين للغة والثقافة"), title: localized("B.A., Middle Eastern Languages", "中东语言学士", "中東語言學士", "B.A. בשפות המזרח התיכון", "بكالوريوس في لغات الشرق الأوسط") },
+  { id: "itc", type: "training", period: "2023", school: localized("Israel Tech Challenge", "以色列科技挑战学院", "以色列科技挑戰學院", "Israel Tech Challenge", "Israel Tech Challenge"), title: localized("Full-Stack Developer Program", "全栈开发者课程", "全端開發者課程", "תכנית Full-Stack Developer", "برنامج مطور Full-Stack") },
+  { id: "meta", type: "training", period: "2023", school: localized("Meta · Coursera", "Meta · Coursera", "Meta · Coursera", "Meta · Coursera", "Meta · Coursera"), title: localized("Full-Stack Developer Professional Program", "全栈开发者专业课程", "全端開發者專業課程", "תכנית מקצועית ל-Full-Stack", "برنامج احترافي لمطوري Full-Stack") },
+  { id: "london", type: "training", period: "2021", school: localized("University of London · Coursera", "伦敦大学 · Coursera", "倫敦大學 · Coursera", "University of London · Coursera", "جامعة لندن · Coursera"), title: localized("Computer Science and Programming Specialization", "计算机科学与编程专项课程", "電腦科學與程式設計專項課程", "התמחות במדעי המחשב ותכנות", "تخصص علوم الحاسوب والبرمجة") },
+  { id: "google", type: "training", period: "2021", school: localized("Google · Coursera", "Google · Coursera", "Google · Coursera", "Google · Coursera", "Google · Coursera"), title: localized("IT Support Professional Certificate", "IT 支持专业证书", "IT 支援專業證書", "תעודה מקצועית בתמיכת IT", "شهادة احترافية في دعم تقنية المعلومات") },
+] as const;
+
+export const projects = [
+  { id: "zelaze", status: "featured" as ProjectStatus, image: "/assets/projects/zelaze.png", title: "Zelaze", description: localized("A customized mutual-assistance service built as an ITC final group project.", "ITC 小组毕业项目：定制化互助服务平台。", "ITC 小組畢業專案：客製化互助服務平台。", "שירות עזרה הדדית מותאם אישית שנבנה כפרויקט גמר קבוצתי ב-ITC.", "خدمة مساعدة متبادلة مخصصة بُنيت كمشروع تخرج جماعي في ITC."), stack: ["React", "TypeScript", "Node.js"], href: "https://github.com/Him97" },
+  { id: "llama", status: "developing" as ProjectStatus, image: "/assets/projects/little-llama.png", title: "Little Llama", description: localized("A full-stack pet adoption service, currently being refined for deployment.", "全栈宠物领养服务，目前正在完善并准备部署。", "全端寵物領養服務，目前正在完善並準備部署。", "שירות אימוץ חיות full-stack שנמצא כעת בשיפור לקראת deployment.", "خدمة متكاملة لتبني الحيوانات يجري تحسينها حالياً تمهيداً للنشر."), stack: ["React", "Express", "MongoDB"], href: "https://github.com/him-li/littlellama" },
+  { id: "lemon", status: "repository" as ProjectStatus, image: "/assets/projects/little-lemon.png", title: "Little Lemon", description: localized("A responsive restaurant experience created for the Meta frontend capstone.", "为 Meta 前端结业项目创建的响应式餐厅体验。", "為 Meta 前端結業專案建立的響應式餐廳體驗。", "חוויית מסעדה רספונסיבית שנבנתה לפרויקט הגמר של Meta Frontend.", "تجربة مطعم متجاوبة أُنشئت لمشروع التخرج في برنامج Meta للواجهات."), stack: ["React", "UX", "Testing"], href: "https://github.com/him-li/meta-react-littlelemon" },
+] as const;
+
+export const skillGroups = [
+  { id: "frontend", title: localized("Core frontend", "核心前端", "核心前端", "Frontend מרכזי", "الواجهة الأساسية"), skills: ["React", "TypeScript", "JavaScript", "Next.js", "HTML5", "CSS", "Tailwind CSS", "MUI"] },
+  { id: "backend", title: localized("Backend & APIs", "后端与 API", "後端與 API", "Backend ו-API", "الخلفية وواجهات API"), skills: ["Python", "FastAPI", "Node.js", "Express", "REST APIs", "MongoDB", "SQL"] },
+  { id: "tools", title: localized("Engineering & tools", "工程与工具", "工程與工具", "הנדסה וכלים", "الهندسة والأدوات"), skills: ["Git", "JSON Schema", "Debugging", "Unit testing", "Salesforce", "Excel"] },
+] as const;
+
+export const languages = [
+  { native: "English", level: localized("Fluent", "流利", "流利", "שוטפת", "بطلاقة") },
+  { native: "中文", level: localized("Native", "母语", "母語", "שפת אם", "اللغة الأم") },
+  { native: "עברית", level: localized("Intermediate", "中级", "中級", "בינונית", "متوسط") },
+  { native: "العربية", level: localized("Intermediate (MSA)", "中级（现代标准阿拉伯语）", "中級（現代標準阿拉伯語）", "בינונית (MSA)", "متوسط (الفصحى)") },
+] as const;
