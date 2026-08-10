@@ -147,8 +147,8 @@ export const experiences = [
       "تل أبيب، إسرائيل",
     ),
     period: "2024–2026",
-    logo: "RE",
-    color: "#272c25",
+    logo: "/assets/experiences/realeye_logo.PNG",
+    cover: "/assets/experiences/realeye_cover.jpg",
     summary: localized(
       "Production interfaces, schema-driven systems, REST integrations, and cross-stack debugging.",
       "生产级界面、Schema 驱动系统、REST 集成与跨栈调试。",
@@ -205,8 +205,8 @@ export const experiences = [
       "تل أبيب، إسرائيل",
     ),
     period: "2021–2023",
-    logo: "zota",
-    color: "#ef5a38",
+    logo: "/assets/experiences/zota_technology_logo.jpg",
+    cover: "/assets/experiences/zota_technology_cover.jpg",
     summary: localized(
       "Payment processors, partner integrations, commercial operations, and emerging markets.",
       "支付处理商、合作伙伴集成、商业运营与新兴市场。",
@@ -263,8 +263,8 @@ export const experiences = [
       "بكين، الصين",
     ),
     period: "2019",
-    logo: "中图",
-    color: "#b82032",
+    logo: "/assets/experiences/bibf2016.jpg",
+    cover: "/assets/experiences/bibf_cover.jpg",
     summary: localized(
       "Publishing, contract negotiations, and multilingual coordination for Middle Eastern exhibitors.",
       "出版、合同谈判及面向中东参展商的多语言协调。",
@@ -287,7 +287,6 @@ export const experiences = [
 export const education = [
   {
     id: "huji",
-    type: "degree",
     period: "2020–2021",
     image: "/assets/education/hebrew-university.jpg",
     school: localized(
@@ -307,7 +306,6 @@ export const education = [
   },
   {
     id: "blcu",
-    type: "degree",
     period: "2016–2020",
     image: "/assets/education/blcu.jpg",
     school: localized(
@@ -327,7 +325,7 @@ export const education = [
   },
   {
     id: "itc",
-    type: "training",
+    image: "/assets/education/itc.jpg",
     period: "2023",
     school: localized(
       "Israel Tech Challenge",
@@ -346,7 +344,7 @@ export const education = [
   },
   {
     id: "meta",
-    type: "training",
+    image: "/assets/education/aiatmeta_cover.jpg",
     period: "2023",
     school: localized(
       "Meta · Coursera",
@@ -365,7 +363,7 @@ export const education = [
   },
   {
     id: "london",
-    type: "training",
+    image: "/assets/education/university_of_london_cover.jpg",
     period: "2021",
     school: localized(
       "University of London · Coursera",
@@ -384,7 +382,7 @@ export const education = [
   },
   {
     id: "google",
-    type: "training",
+    image: "/assets/education/google_cover.jpg",
     period: "2021",
     school: localized(
       "Google · Coursera",
@@ -535,18 +533,22 @@ export const skillGroups = [
 export const languages = [
   {
     native: "English",
+    mark: "E",
     level: localized("Fluent", "流利", "流利", "שוטפת", "بطلاقة"),
   },
   {
     native: "中文",
+    mark: "中",
     level: localized("Native", "母语", "母語", "שפת אם", "اللغة الأم"),
   },
   {
     native: "עברית",
+    mark: "ע",
     level: localized("Intermediate", "中级", "中級", "בינונית", "متوسط"),
   },
   {
     native: "العربية",
+    mark: "ع",
     level: localized(
       "Intermediate (MSA)",
       "中级（现代标准阿拉伯语）",

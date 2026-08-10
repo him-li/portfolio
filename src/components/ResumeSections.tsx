@@ -1,4 +1,9 @@
-import { ArrowUpRight, ChevronDown, SlidersHorizontal, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  SlidersHorizontal,
+  X,
+} from "lucide-react";
 import {
   AnimatePresence,
   motion,
@@ -32,6 +37,7 @@ import {
   type ProjectStatus,
 } from "../data/resume";
 import type { Locale } from "../i18n";
+import { InfoChip } from "./InfoChip";
 
 const iconMap = {
   React: siReact,
@@ -55,7 +61,7 @@ function SkillIcon({ name }: { name: string }) {
   if (!icon)
     return (
       <span className="skill-fallback" aria-hidden="true">
-        {name.slice(0, 2).toUpperCase()}
+        {Array.from(name)[0]?.toUpperCase()}
       </span>
     );
   return (
@@ -64,6 +70,21 @@ function SkillIcon({ name }: { name: string }) {
     </svg>
   );
 }
+
+function periodSortValue(period: string) {
+  const years = period.match(/\d{4}/g)?.map(Number) ?? [];
+  const start = years[0] ?? 0;
+  const end = /present|current|now/i.test(period)
+    ? Number.MAX_SAFE_INTEGER
+    : (years.at(-1) ?? start);
+  return { end, start };
+}
+
+const chronologicalEducation = [...education].sort((a, b) => {
+  const aPeriod = periodSortValue(a.period);
+  const bPeriod = periodSortValue(b.period);
+  return bPeriod.end - aPeriod.end || bPeriod.start - aPeriod.start;
+});
 
 function useRevealProps(): MotionProps {
   const reducedMotion = useReducedMotion();
@@ -98,11 +119,15 @@ export function ExperienceSection({ locale }: { locale: Locale }) {
               transition={{ duration: 0.56, delay: index * 0.08 }}
             >
               <div className="career-node" />
-              <div
-                className="company-mark"
-                style={{ backgroundColor: job.color }}
-              >
-                {job.logo}
+              <div className="career-background" aria-hidden="true">
+                <div
+                  className="career-background__image"
+                  style={{ backgroundImage: `url(${job.cover})` }}
+                />
+                <div className="career-background__overlay" />
+              </div>
+              <div className="company-mark">
+                <img src={job.logo} alt="" />
               </div>
               <div className="career-content">
                 <div className="career-meta">
@@ -217,7 +242,17 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                 <h3>{project.title}</h3>
                 <p>{project.description[locale]}</p>
                 <footer>
-                  <small>{project.stack.join(" · ")}</small>
+                  <div className="project-stack">
+                    {project.stack.map((technology) => (
+                      <InfoChip
+                        icon={<SkillIcon name={technology} />}
+                        key={technology}
+                        variant="soft"
+                      >
+                        {technology}
+                      </InfoChip>
+                    ))}
+                  </div>
                   <div className="project-actions">
                     <button
                       aria-expanded={expanded === project.id}
@@ -251,7 +286,13 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                       <p>{project.details[locale]}</p>
                       <div>
                         {project.stack.map((technology) => (
-                          <span key={technology}>{technology}</span>
+                          <InfoChip
+                            icon={<SkillIcon name={technology} />}
+                            key={technology}
+                            variant="soft"
+                          >
+                            {technology}
+                          </InfoChip>
                         ))}
                       </div>
                     </motion.div>
@@ -266,50 +307,7 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
   );
 }
 
-export function EducationSection({ locale }: { locale: Locale }) {
-  const degrees = education.filter((item) => item.type === "degree");
-  const training = education.filter((item) => item.type === "training");
-  const reveal = useRevealProps();
-  return (
-    <motion.section className="resume-section section-shell" id="education">
-      <motion.header className="section-heading" {...reveal}>
-        <p className="eyebrow">03 / {resumeLabels.education[locale]}</p>
-        <h2>{resumeLabels.educationTitle[locale]}</h2>
-      </motion.header>
-      <div className="education-layout">
-        {degrees.map((item, index) => (
-          <motion.article
-            className="degree-card"
-            key={item.id}
-            style={{ backgroundImage: `url(${item.image})` }}
-            {...reveal}
-            transition={{ duration: 0.62, delay: index * 0.1 }}
-          >
-            <div className="degree-overlay" />
-            <div className="degree-copy">
-              <span>{item.period}</span>
-              <h3>{item.title[locale]}</h3>
-              <p>{item.school[locale]}</p>
-            </div>
-          </motion.article>
-        ))}
-        <motion.aside className="training-list" {...reveal}>
-          {training.map((item) => (
-            <article key={item.id}>
-              <time>{item.period}</time>
-              <div>
-                <h3>{item.title[locale]}</h3>
-                <p>{item.school[locale]}</p>
-              </div>
-            </article>
-          ))}
-        </motion.aside>
-      </div>
-    </motion.section>
-  );
-}
-
-export function SkillsSection({ locale }: { locale: Locale }) {
+export function ProfileSection({ locale }: { locale: Locale }) {
   const reveal = useRevealProps();
   return (
     <motion.section
@@ -317,42 +315,75 @@ export function SkillsSection({ locale }: { locale: Locale }) {
       id="profile"
     >
       <motion.header className="section-heading" {...reveal}>
-        <p className="eyebrow">04 / {resumeLabels.skills[locale]}</p>
+        <p className="eyebrow">03 / {resumeLabels.skills[locale]}</p>
         <h2>{resumeLabels.skillsTitle[locale]}</h2>
       </motion.header>
-      <div className="skill-groups">
-        {skillGroups.map((group) => (
-          <motion.article key={group.id} {...reveal}>
-            <h3>{group.title[locale]}</h3>
-            <div className="skill-grid">
-              {group.skills.map((skill, index) => (
-                <motion.div
-                  className="skill-item"
-                  key={skill}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: Math.min(index * 0.035, 0.2) }}
+      <div className="profile-layout">
+        <div className="profile-capabilities">
+          <div className="skill-groups">
+            {skillGroups.map((group) => (
+              <motion.article key={group.id} {...reveal}>
+                <h3>{group.title[locale]}</h3>
+                <div className="chip-cloud">
+                  {group.skills.map((skill) => (
+                    <InfoChip icon={<SkillIcon name={skill} />} key={skill}>
+                      {skill}
+                    </InfoChip>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+          <motion.div className="language-section" {...reveal}>
+            <p className="eyebrow">{resumeLabels.languages[locale]}</p>
+            <div className="chip-cloud">
+              {languages.map((language) => (
+                <InfoChip
+                  icon={
+                    <span className="language-mark" aria-hidden="true">
+                      {language.mark}
+                    </span>
+                  }
+                  key={language.native}
+                  variant="soft"
                 >
-                  <SkillIcon name={skill} />
-                  <span>{skill}</span>
-                </motion.div>
+                  {language.native} · {language.level[locale]}
+                </InfoChip>
               ))}
             </div>
-          </motion.article>
-        ))}
-      </div>
-      <motion.div className="language-section" {...reveal}>
-        <p className="eyebrow">{resumeLabels.languages[locale]}</p>
-        <div className="language-grid">
-          {languages.map((language) => (
-            <div key={language.native}>
-              <strong>{language.native}</strong>
-              <span>{language.level[locale]}</span>
-            </div>
-          ))}
+          </motion.div>
         </div>
-      </motion.div>
+        <motion.aside className="education-profile" {...reveal}>
+          <p className="eyebrow">{resumeLabels.education[locale]}</p>
+          <div className="education-timeline">
+            {chronologicalEducation.map((item, index) => (
+              <motion.article
+                className={`education-card${item.image ? " has-image" : ""}`}
+                key={item.id}
+                initial={{ opacity: 0, x: 18 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: Math.min(index * 0.06, 0.24) }}
+              >
+                <div className="education-card__surface">
+                  {item.image ? (
+                    <div
+                      className="education-card__image"
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    />
+                  ) : null}
+                  <div className="education-card__overlay" />
+                  <div className="education-card__copy">
+                    <time>{item.period}</time>
+                    <h3>{item.title[locale]}</h3>
+                    <p>{item.school[locale]}</p>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </motion.aside>
+      </div>
     </motion.section>
   );
 }

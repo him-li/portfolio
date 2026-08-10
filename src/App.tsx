@@ -1,4 +1,8 @@
-import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
+import {
+  ArrowDown,
+  Download,
+  Mail,
+} from "lucide-react";
 import {
   motion,
   useReducedMotion,
@@ -6,17 +10,29 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef } from "react";
+import { siGithub } from "simple-icons";
 import { Header } from "./components/Header";
+import { InfoChip } from "./components/InfoChip";
 import { OrbitMark } from "./components/OrbitMark";
 import {
-  EducationSection,
   ExperienceSection,
+  ProfileSection,
   ProjectsSection,
-  SkillsSection,
 } from "./components/ResumeSections";
 import { usePreferences } from "./hooks/usePreferences";
 import { useActiveSection } from "./hooks/useActiveSection";
 import { messages, rtlLocales } from "./i18n";
+
+const linkedInPath =
+  "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452z";
+
+function BrandIcon({ path }: { path: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24">
+      <path d={path} />
+    </svg>
+  );
+}
 
 export function App() {
   const { theme, setTheme, locale, setLocale } = usePreferences();
@@ -104,38 +120,40 @@ export function App() {
         </section>
         <ExperienceSection locale={locale} />
         <ProjectsSection locale={locale} />
-        <EducationSection locale={locale} />
-        <SkillsSection locale={locale} />
+        <ProfileSection locale={locale} />
         <section className="content-section section-shell contact" id="contact">
-          <p className="eyebrow">05 / {copy.sections.contactKicker}</p>
+          <p className="eyebrow">04 / {copy.sections.contactKicker}</p>
           <h2>{copy.sections.contactTitle}</h2>
           <p>{copy.sections.contactBody}</p>
           <div className="contact-links">
-            <a
-              className="button button-primary"
+            <InfoChip
               href="mailto:xin.li@outlook.co.il"
+              icon={<Mail aria-hidden="true" />}
+              size="lg"
+              variant="solid"
             >
               xin.li@outlook.co.il
-              <ArrowUpRight size={16} />
-            </a>
-            <a
-              className="button button-secondary"
+            </InfoChip>
+            <InfoChip
               href="https://linkedin.com/in/xin-li-5387a5169"
+              icon={<BrandIcon path={linkedInPath} />}
+              label="Xin Li on LinkedIn"
+              size="lg"
               target="_blank"
               rel="noreferrer"
             >
               LinkedIn
-              <ArrowUpRight size={16} />
-            </a>
-            <a
-              className="button button-secondary"
+            </InfoChip>
+            <InfoChip
               href="https://github.com/Him97"
+              icon={<BrandIcon path={siGithub.path} />}
+              label="Xin Li on GitHub"
+              size="lg"
               target="_blank"
               rel="noreferrer"
             >
               GitHub
-              <ArrowUpRight size={16} />
-            </a>
+            </InfoChip>
           </div>
         </section>
       </main>

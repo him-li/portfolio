@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const sectionIds = ["home", "experience", "work", "education", "profile", "contact"] as const;
+export const sectionIds = ["home", "experience", "work", "profile", "contact"] as const;
 export type SectionId = (typeof sectionIds)[number];
 
 export function useActiveSection() {

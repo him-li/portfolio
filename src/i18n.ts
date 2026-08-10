@@ -13,6 +13,7 @@ export const rtlLocales = new Set<Locale>(["he", "ar"]);
 
 const en = {
   nav: {
+    name: "Xin Li",
     home: "Index",
     experience: "Experience",
     work: "Work",
@@ -67,6 +68,7 @@ export const messages: Record<Locale, Messages> = {
   en,
   "zh-CN": {
     nav: {
+      name: "李鑫",
       home: "首页",
       experience: "经历",
       work: "作品",
@@ -113,6 +115,7 @@ export const messages: Record<Locale, Messages> = {
   },
   "zh-TW": {
     nav: {
+      name: "李鑫",
       home: "首頁",
       experience: "經歷",
       work: "作品",
@@ -159,6 +162,7 @@ export const messages: Record<Locale, Messages> = {
   },
   he: {
     nav: {
+      name: "שין לי",
       home: "ראשי",
       experience: "ניסיון",
       work: "עבודות",
@@ -207,6 +211,7 @@ export const messages: Record<Locale, Messages> = {
   },
   ar: {
     nav: {
+      name: "إدريس شين لي",
       home: "الرئيسية",
       experience: "الخبرة",
       work: "الأعمال",
