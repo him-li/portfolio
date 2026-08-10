@@ -22,6 +22,13 @@ import {
   siReact,
   siTailwindcss,
   siTypescript,
+  siDjango,
+  siDaisyui,
+  siVite,
+  siHtmx,
+  siSqlite,
+  siHeroui,
+  siJson,
 } from "simple-icons";
 import {
   education,
@@ -51,6 +58,13 @@ const iconMap = {
   Express: siExpress,
   MongoDB: siMongodb,
   Git: siGit,
+  Django: siDjango,
+  DaisyUI: siDaisyui,
+  Vite: siVite,
+  HTMX: siHtmx,
+  SQL: siSqlite,
+  Heroui: siHeroui,
+  "JSON Schema": siJson,
 };
 
 function SkillIcon({ name }: { name: string }) {
@@ -300,18 +314,7 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                     >
-                      <p>{project.details[locale]}</p>
-                      <div>
-                        {project.stack.map((technology) => (
-                          <InfoChip
-                            icon={<SkillIcon name={technology} />}
-                            key={technology}
-                            variant="soft"
-                          >
-                            {technology}
-                          </InfoChip>
-                        ))}
-                      </div>
+                      {project.details[locale]}
                     </motion.div>
                   )}
                 </AnimatePresence>

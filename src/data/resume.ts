@@ -491,8 +491,8 @@ export const projects = [
       "עיצוב סביב התאמה בין מבקשי עזרה לחברי קהילה קרובים, עם גילוי שירותים, בקשות ותהליכי חשבון.",
       "مصمم لربط طالبي المساعدة بأفراد المجتمع القريبين، مع اكتشاف الخدمات والطلبات ومسارات الحساب.",
     ),
-    stack: ["React", "TypeScript", "Node.js"],
-    href: "https://github.com/Him97",
+    stack: ["React", "TypeScript", "Vite", "MUI", "Node.js"],
+    href: "https://him-li.github.io/zelaze-frontend",
   },
   {
     id: "llama",
@@ -531,11 +531,11 @@ export const projects = [
     image: "/assets/projects/little-lemon.png",
     title: "Little Lemon",
     description: localized(
-      "A responsive restaurant experience created for the Meta frontend capstone.",
-      "为 Meta 前端结业项目创建的响应式餐厅体验。",
-      "爲 Meta 前端結業專案建立的響應式餐廳體驗。",
-      "חוויית מסעדה רספונסיבית שנבנתה לפרויקט הגמר של Meta Frontend.",
-      "تجربة مطعم متجاوبة أُنشئت لمشروع التخرج في برنامج Meta للواجهات.",
+      "A responsive restaurant experience created for the Meta frontend and backend capstone.",
+      "为 Meta 前端和后端结业项目创建的响应式餐厅体验。",
+      "爲 Meta 前端和後端結業專案建立的響應式餐廳體驗。",
+      "חוויית מסעדה רספונסיבית שנבנתה לפרויקט הגמר של Meta Frontend ו-Backend.",
+      "تجربة مطعم متجاوبة أُنشئت لمشروع التخرج في برنامج Meta للواجهات والخلفية.",
     ),
     details: localized(
       "A usability-led booking flow supported by semantic components, responsive layouts, form validation, and focused interaction tests.",
@@ -544,8 +544,15 @@ export const projects = [
       "תהליך הזמנה מונחה-שימושיות עם רכיבים סמנטיים, layout רספונסיבי, אימות טפסים ובדיקות אינטראקציה.",
       "تدفق حجز يركز على سهولة الاستخدام مع مكونات دلالية وتخطيطات متجاوبة والتحقق من النماذج واختبارات التفاعل.",
     ),
-    stack: ["React", "UX", "Testing"],
-    href: "https://github.com/him-li/meta-react-littlelemon",
+    stack: [
+      "Python",
+      "Django",
+      "Tailwind CSS",
+      "DaisyUI",
+      "HTMX",
+      "PostgreSQL",
+    ],
+    href: "https://littlelemon-xin.vercel.app",
   },
 ] as const;
 
