@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 
 type InfoChipProps = {
   children: ReactNode;
@@ -6,6 +6,8 @@ type InfoChipProps = {
   href?: string;
   icon?: ReactNode;
   label?: string;
+  expanded?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   rel?: string;
   size?: "sm" | "md" | "lg";
   target?: "_blank";
@@ -18,6 +20,8 @@ export function InfoChip({
   href,
   icon,
   label,
+  expanded,
+  onClick,
   rel,
   size = "md",
   target,
@@ -30,6 +34,20 @@ export function InfoChip({
       <span className="info-chip__label">{children}</span>
     </>
   );
+
+  if (onClick) {
+    return (
+      <button
+        aria-expanded={expanded}
+        aria-label={label}
+        className={classes}
+        onClick={onClick}
+        type="button"
+      >
+        {content}
+      </button>
+    );
+  }
 
   if (href) {
     return (

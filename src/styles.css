@@ -69,6 +69,8 @@ a { color:inherit; text-decoration:none; }
 .contact-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
 .info-chip { --chip-height:34px; min-height:var(--chip-height); width:max-content; max-width:100%; padding:0 13px; border:1px solid var(--line); border-radius:999px; display:inline-flex; align-items:center; gap:8px; vertical-align:middle; background:color-mix(in srgb,var(--paper-raised) 72%,transparent); color:var(--ink); font-size:.82rem; font-weight:560; line-height:1; white-space:nowrap; transition:background .2s,border-color .2s,color .2s,transform .2s; }
 a.info-chip:hover { border-color:color-mix(in srgb,var(--accent) 48%,var(--line)); color:var(--accent); transform:translateY(-1px); }
+button.info-chip { cursor:pointer; }
+button.info-chip:hover { border-color:color-mix(in srgb,var(--accent) 48%,var(--line)); color:var(--accent); }
 .info-chip--sm { --chip-height:28px; padding-inline:9px; gap:6px; font-size:.72rem; }
 .info-chip--lg { --chip-height:42px; padding-inline:16px; font-size:.88rem; }
 .info-chip--soft { border-color:transparent; background:var(--accent-soft); color:color-mix(in srgb,var(--accent) 78%,var(--ink)); }
@@ -100,10 +102,12 @@ a.info-chip:hover { border-color:color-mix(in srgb,var(--accent) 48%,var(--line)
 .career-meta p,.career-meta time { margin:0; color:var(--muted); font-size:.82rem; }
 .career-meta time { white-space:nowrap; font-family:ui-monospace,monospace; }
 .career-summary { margin:17px 0 12px; color:var(--muted); line-height:1.65; }
+.career-skills { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 16px; }
 .detail-toggle { border:0; padding:0; background:transparent; color:var(--accent); display:flex; align-items:center; gap:7px; font-size:.76rem; font-weight:750; cursor:pointer; }
 .detail-toggle[aria-expanded="true"] svg { transform:rotate(180deg); }
-.career-details { margin:19px 0 0; padding-inline-start:20px; color:var(--muted); border-top:1px solid var(--line); padding-top:17px; }
-.career-details li { margin:9px 0; padding-inline-start:5px; line-height:1.55; }
+.career-details { margin:19px 0 0; padding-inline-start:22px; color:var(--muted); border-top:1px solid var(--line); padding-top:17px; list-style:disc outside; }
+.career-details li { margin:11px 0; padding-inline-start:7px; line-height:1.58; }
+.career-details li::marker { color:var(--accent); font-size:.9em; }
 .project-section { background:color-mix(in srgb,var(--paper-raised) 44%,transparent); }
 .project-filters { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:-30px 0 30px; color:var(--muted); }
 .project-filters>svg { margin-inline-end:5px; }
@@ -124,7 +128,8 @@ a.info-chip:hover { border-color:color-mix(in srgb,var(--accent) 48%,var(--line)
 .project-stack { display:flex; flex-wrap:wrap; gap:6px; }
 .project-card .info-chip { border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.12); color:rgba(255,255,255,.82); backdrop-filter:blur(8px); }
 .project-actions { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; }
-.project-actions button,.project-actions a { min-height:34px; padding:0 11px; border:1px solid rgba(255,255,255,.24); border-radius:999px; background:rgba(10,12,9,.16); color:#fff; display:flex; align-items:center; gap:6px; font:700 .72rem/1 inherit; cursor:pointer; backdrop-filter:blur(8px); }
+.project-actions .info-chip { border-color:rgba(255,255,255,.24); background:rgba(10,12,9,.16); color:#fff; backdrop-filter:blur(8px); }
+.project-actions .info-chip:hover { border-color:rgba(255,255,255,.46); color:#fff; }
 .project-details { overflow:hidden; }
 .project-details>p { margin:18px 0 12px; padding-top:15px; border-top:1px solid rgba(255,255,255,.2); }
 .project-details>div { display:flex; flex-wrap:wrap; gap:6px; }
@@ -142,7 +147,7 @@ a.info-chip:hover { border-color:color-mix(in srgb,var(--accent) 48%,var(--line)
 .education-timeline::before { content:""; position:absolute; inset-block:18px; inset-inline-start:5px; width:1px; background:linear-gradient(var(--accent),color-mix(in srgb,var(--signal) 72%,transparent)); }
 .education-card { min-height:148px; position:relative; overflow:visible; border:1px solid var(--line); border-radius:18px; background-color:color-mix(in srgb,var(--paper-raised) 82%,transparent); isolation:isolate; }
 .education-card::before { content:""; position:absolute; top:24px; inset-inline-start:-24px; width:11px; height:11px; border:3px solid var(--paper); border-radius:50%; background:var(--accent); box-shadow:0 0 0 1px var(--accent); z-index:3; }
-.education-card__surface { position:absolute; inset:0; overflow:hidden; border-radius:inherit; }
+.education-card__surface { position:relative; min-height:148px; overflow:hidden; border-radius:inherit; }
 .education-card__image { position:absolute; inset:0; background-position:center; background-size:cover; transition:transform .6s cubic-bezier(.2,.75,.2,1); z-index:0; }
 .education-card.has-image:hover .education-card__image { transform:scale(1.035); }
 .education-card__overlay { position:absolute; inset:0; border-radius:inherit; background:linear-gradient(90deg,color-mix(in srgb,var(--paper-raised) 96%,transparent) 18%,color-mix(in srgb,var(--paper-raised) 84%,transparent) 63%,color-mix(in srgb,var(--paper-raised) 68%,transparent)); z-index:1; }
@@ -152,6 +157,8 @@ a.info-chip:hover { border-color:color-mix(in srgb,var(--accent) 48%,var(--line)
 .education-card time { color:var(--accent); font:650 .68rem/1 ui-monospace,monospace; letter-spacing:.08em; }
 .education-card h3 { margin:10px 0 6px; font:400 clamp(1.1rem,2vw,1.45rem)/1.13 Iowan Old Style,Georgia,serif; }
 .education-card p { margin:0; color:var(--muted); font-size:.76rem; line-height:1.45; }
+.education-certificates { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+.education-certificates .info-chip { background:color-mix(in srgb,var(--paper-raised) 78%,transparent); backdrop-filter:blur(8px); }
 @media (max-width:1050px) { .site-nav { gap:11px; } .site-nav small { display:none; } }
 @media (max-width:900px) { .site-nav { gap:15px; } .hero { grid-template-columns:1fr; padding-top:144px; } .hero-copy { position:relative; z-index:2; } .hero-visual { height:430px; min-height:0; } .fact-rail { grid-template-columns:1fr 1fr; } .fact-rail div:nth-child(2) { border-inline-end:0; } .fact-rail div:nth-child(-n+2) { border-bottom:1px solid var(--line); } .section-heading { grid-template-columns:1fr; gap:5px; } .project-card,.project-card.is-featured { grid-column:span 6; min-height:480px; grid-row:auto; } .profile-layout { grid-template-columns:1fr; } .profile-capabilities { position:static; } }
 @media (max-width:700px) { .language-trigger span { display:none; } .menu-button { display:grid; } .site-nav { position:fixed; inset:76px 0 auto; padding:24px; background:var(--paper-raised); border-bottom:1px solid var(--line); display:none; flex-direction:column; align-items:stretch; gap:0; } .site-nav.is-open { display:flex; } .site-nav a { justify-content:space-between; padding:15px 0; border-bottom:1px solid var(--line); font-size:14px; } .site-nav a::after { display:none; } .site-nav a:last-child { border-bottom:0; } .hero { min-height:auto; padding-top:130px; padding-inline:24px; } .hero h1 { font-size:clamp(3.7rem,19vw,5.7rem); } .hero-visual { height:340px; transform:scale(.88); margin-inline:-20px; } .exploring-card { inset-inline-end:-4%; } .scroll-cue { display:none; } .content-section { padding-inline:24px; padding-block:90px; } .resume-section { padding-inline:24px; } .career-entry { grid-template-columns:56px minmax(0,1fr); gap:15px; margin-inline-start:30px; padding:18px; } .career-node { inset-inline-start:-29px; } .company-mark { width:56px; border-radius:13px; font-size:.72rem; } .career-meta { flex-direction:column; gap:7px; } .career-summary,.detail-toggle,.career-details { grid-column:1/-1; } .career-timeline::before { inset-inline-start:8px; } .project-filters { margin-top:-20px; } .project-card,.project-card.is-featured { grid-column:1/-1; min-height:500px; } .education-card__copy { max-width:92%; } }

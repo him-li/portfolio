@@ -128,7 +128,7 @@ export const messages: Record<Locale, Messages> = {
       titleAccent: "清晰",
       titleAfter: "與深度的介面。",
       description:
-        "我打造經過深思熟慮的數位產品，讓嚴謹的工程與富有表現力的互動相遇——快速、無障礙，並始終以人為本。",
+        "我打造經過深思熟慮的數位產品，讓嚴謹的工程與富有表現力的互動相遇——快速、無障礙，並始終以人爲本。",
       primary: "瀏覽精選作品",
       secondary: "下載履歷",
       orbitLabel: "抽象軌道個人識別圖形",

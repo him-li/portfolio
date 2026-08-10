@@ -1,9 +1,4 @@
-import {
-  ArrowUpRight,
-  ChevronDown,
-  SlidersHorizontal,
-  X,
-} from "lucide-react";
+import { ArrowUpRight, ChevronDown, SlidersHorizontal, X } from "lucide-react";
 import {
   AnimatePresence,
   motion,
@@ -140,6 +135,17 @@ export function ExperienceSection({ locale }: { locale: Locale }) {
                   <time>{job.period}</time>
                 </div>
                 <p className="career-summary">{job.summary[locale]}</p>
+                <div className="career-skills">
+                  {job.skills.map((skill) => (
+                    <InfoChip
+                      icon={<SkillIcon name={skill} />}
+                      key={skill}
+                      size="sm"
+                    >
+                      {skill}
+                    </InfoChip>
+                  ))}
+                </div>
                 <button
                   className="detail-toggle"
                   aria-expanded={isExpanded}
@@ -254,25 +260,31 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                     ))}
                   </div>
                   <div className="project-actions">
-                    <button
-                      aria-expanded={expanded === project.id}
+                    <InfoChip
+                      expanded={expanded === project.id}
+                      icon={
+                        expanded === project.id ? (
+                          <X aria-hidden="true" />
+                        ) : (
+                          <ChevronDown aria-hidden="true" />
+                        )
+                      }
                       onClick={() =>
                         setExpanded(expanded === project.id ? null : project.id)
                       }
                     >
-                      {expanded === project.id ? (
-                        <X size={14} />
-                      ) : (
-                        <ChevronDown size={14} />
-                      )}
                       {expanded === project.id
                         ? resumeLabels.collapseProject[locale]
                         : resumeLabels.expandProject[locale]}
-                    </button>
-                    <a href={project.href} target="_blank" rel="noreferrer">
-                      {resumeLabels.viewProject[locale]}{" "}
-                      <ArrowUpRight size={15} />
-                    </a>
+                    </InfoChip>
+                    <InfoChip
+                      href={project.href}
+                      icon={<ArrowUpRight aria-hidden="true" />}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      {resumeLabels.viewProject[locale]}
+                    </InfoChip>
                   </div>
                 </footer>
                 <AnimatePresence initial={false}>
@@ -377,6 +389,22 @@ export function ProfileSection({ locale }: { locale: Locale }) {
                     <time>{item.period}</time>
                     <h3>{item.title[locale]}</h3>
                     <p>{item.school[locale]}</p>
+                    {item.certificates.length > 0 ? (
+                      <div className="education-certificates">
+                        {item.certificates.map((certificate) => (
+                          <InfoChip
+                            href={certificate.href}
+                            icon={<ArrowUpRight aria-hidden="true" />}
+                            key={certificate.href}
+                            label={`${certificate.label[locale]} — ${item.school[locale]}`}
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            {certificate.label[locale]}
+                          </InfoChip>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </motion.article>

@@ -149,6 +149,17 @@ export const experiences = [
     period: "2024–2026",
     logo: "/assets/experiences/realeye_logo.PNG",
     cover: "/assets/experiences/realeye_cover.jpg",
+    skills: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "Python",
+      "FastAPI",
+      "REST APIs",
+      "MongoDB",
+      "JSON Schema",
+    ],
     summary: localized(
       "Production interfaces, schema-driven systems, REST integrations, and cross-stack debugging.",
       "生产级界面、Schema 驱动系统、REST 集成与跨栈调试。",
@@ -167,7 +178,7 @@ export const experiences = [
       localized(
         "Built reusable, schema-driven UI components for dynamic forms, nested objects, arrays, and configurable workflows.",
         "为动态表单、嵌套对象、数组和可配置工作流构建可复用的 Schema 驱动 UI 组件。",
-        "為動態表單、巢狀物件、陣列和可設定工作流程建立可重用的 Schema 驅動 UI 元件。",
+        "爲動態表單、巢狀物件、陣列和可設定工作流程建立可重用的 Schema 驅動 UI 元件。",
         "בניית רכיבי UI רב-פעמיים ומונעי-schema לטפסים דינמיים, אובייקטים מקוננים, מערכים ותהליכים ניתנים להגדרה.",
         "بناء مكونات واجهة قابلة لإعادة الاستخدام وقائمة على المخططات للنماذج الديناميكية والكائنات المتداخلة والمصفوفات وسير العمل القابل للتهيئة.",
       ),
@@ -207,6 +218,7 @@ export const experiences = [
     period: "2021–2023",
     logo: "/assets/experiences/zota_technology_logo.jpg",
     cover: "/assets/experiences/zota_technology_cover.jpg",
+    skills: ["Excel", "Salesforce", "REST APIs"],
     summary: localized(
       "Payment processors, partner integrations, commercial operations, and emerging markets.",
       "支付处理商、合作伙伴集成、商业运营与新兴市场。",
@@ -225,7 +237,7 @@ export const experiences = [
       localized(
         "Supported Chinese partners in Mandarin and English across communication, pricing negotiations, and operational problem-solving.",
         "使用普通话和英语支持中国合作伙伴，处理跨境沟通、定价谈判与运营问题。",
-        "使用普通話和英語支援中國合作夥伴，處理跨境溝通、定價談判與營運問題。",
+        "使用華語和英語支援中國合作夥伴，處理跨境溝通、定價談判與營運問題。",
         "תמיכה בשותפים סינים במנדרינית ובאנגלית בתקשורת, משא ומתן על תמחור ופתרון בעיות תפעוליות.",
         "دعم الشركاء الصينيين بالماندرين والإنجليزية في التواصل ومفاوضات التسعير وحل المشكلات التشغيلية.",
       ),
@@ -239,7 +251,7 @@ export const experiences = [
       localized(
         "Analyzed transaction and financial data with Excel, Salesforce, and internal systems to support operations and decisions.",
         "使用 Excel、Salesforce 和内部系统分析交易及财务数据，为运营和业务决策提供支持。",
-        "使用 Excel、Salesforce 和內部系統分析交易及財務資料，為營運和業務決策提供支援。",
+        "使用 Excel、Salesforce 和內部系統分析交易及財務資料，爲營運和業務決策提供支援。",
         "ניתוח נתוני עסקאות ופיננסים באמצעות Excel, Salesforce ומערכות פנימיות לתמיכה בתפעול ובהחלטות.",
         "تحليل بيانات المعاملات والبيانات المالية باستخدام Excel وSalesforce والأنظمة الداخلية لدعم العمليات والقرارات.",
       ),
@@ -265,6 +277,7 @@ export const experiences = [
     period: "2019",
     logo: "/assets/experiences/bibf2016.jpg",
     cover: "/assets/experiences/bibf_cover.jpg",
+    skills: ["Mandarin", "English", "Arabic", "Translation"],
     summary: localized(
       "Publishing, contract negotiations, and multilingual coordination for Middle Eastern exhibitors.",
       "出版、合同谈判及面向中东参展商的多语言协调。",
@@ -274,11 +287,19 @@ export const experiences = [
     ),
     bullets: [
       localized(
-        "Managed copyright-related client coordination and contract negotiations; provided Arabic, English, and Mandarin translation for Middle Eastern exhibitors.",
-        "负责版权相关客户协调与合同谈判，并为中东参展商提供阿拉伯语、英语和普通话翻译。",
-        "負責版權相關客戶協調與合約談判，並為中東參展商提供阿拉伯語、英語和普通話翻譯。",
-        "ניהול תיאום לקוחות ומשא ומתן חוזי בנושאי זכויות יוצרים; תרגום בערבית, אנגלית ומנדרינית למציגים מהמזרח התיכון.",
-        "إدارة تنسيق العملاء ومفاوضات العقود المتعلقة بحقوق النشر، وتقديم الترجمة بالعربية والإنجليزية والماندرين للعارضين من الشرق الأوسط.",
+        "Managed copyright-related client coordination and contract negotiations.",
+        "负责版权相关客户协调与合同谈判。",
+        "負責版權相關客戶協調與合約談判。",
+        "ניהול תיאום לקוחות ומשא ומתן חוזי בנושאי זכויות יוצרים.",
+        "إدارة تنسيق العملاء ومفاوضات العقود المتعلقة بحقوق النشر.",
+      ),
+
+      localized(
+        "Provided Arabic, English, and Mandarin translation for Middle Eastern exhibitors.",
+        "为中东参展商提供阿拉伯语、英语和普通话翻译。",
+        "爲中東參展商提供阿拉伯語、英語和華語翻譯。",
+        "תרגום בערבית, אנגלית ומנדרינית למציגים מהמזרח התיכון.",
+        "تقديم الترجمة بالعربية والإنجليزية والماندرين للعارضين من الشرق الأوسط.",
       ),
     ],
   },
@@ -303,6 +324,7 @@ export const education = [
       "M.A. בלימודי המזרח התיכון",
       "ماجستير في دراسات الشرق الأوسط",
     ),
+    certificates: [],
   },
   {
     id: "blcu",
@@ -322,6 +344,7 @@ export const education = [
       "B.A. בשפות המזרח התיכון",
       "بكالوريوس في اللغة العربية وآدابها",
     ),
+    certificates: [],
   },
   {
     id: "itc",
@@ -341,6 +364,7 @@ export const education = [
       "תכנית Full-Stack Developer",
       "برنامج مطور Full-Stack",
     ),
+    certificates: [],
   },
   {
     id: "meta",
@@ -360,6 +384,28 @@ export const education = [
       "תכנית מקצועית ל-Full-Stack",
       "برنامج احترافي لمطوري Full-Stack",
     ),
+    certificates: [
+      {
+        label: localized(
+          "Frontend certificate",
+          "前端证书",
+          "前端證書",
+          "תעודת Frontend",
+          "شهادة الواجهة الأمامية",
+        ),
+        href: "https://www.coursera.org/account/accomplishments/specialization/U2HWB4T5XZXW",
+      },
+      {
+        label: localized(
+          "Backend certificate",
+          "后端证书",
+          "後端證書",
+          "תעודת Backend",
+          "شهادة الواجهة الخلفية",
+        ),
+        href: "https://www.coursera.org/account/accomplishments/specialization/33FLVJ8XE4ET",
+      },
+    ],
   },
   {
     id: "london",
@@ -379,6 +425,18 @@ export const education = [
       "התמחות במדעי המחשב ותכנות",
       "تخصص علوم الحاسوب والبرمجة",
     ),
+    certificates: [
+      {
+        label: localized(
+          "View certificate",
+          "查看证书",
+          "查看證書",
+          "לצפייה בתעודה",
+          "عرض الشهادة",
+        ),
+        href: "https://www.coursera.org/account/accomplishments/specialization/G7KLP5ZKCMHJ",
+      },
+    ],
   },
   {
     id: "google",
@@ -398,6 +456,18 @@ export const education = [
       "תעודה מקצועית בתמיכת IT",
       "شهادة احترافية في دعم تقنية المعلومات",
     ),
+    certificates: [
+      {
+        label: localized(
+          "View certificate",
+          "查看证书",
+          "查看證書",
+          "לצפייה בתעודה",
+          "عرض الشهادة",
+        ),
+        href: "https://www.coursera.org/account/accomplishments/specialization/DQKXENGRWFDA",
+      },
+    ],
   },
 ] as const;
 
@@ -454,14 +524,14 @@ export const projects = [
     description: localized(
       "A responsive restaurant experience created for the Meta frontend capstone.",
       "为 Meta 前端结业项目创建的响应式餐厅体验。",
-      "為 Meta 前端結業專案建立的響應式餐廳體驗。",
+      "爲 Meta 前端結業專案建立的響應式餐廳體驗。",
       "חוויית מסעדה רספונסיבית שנבנתה לפרויקט הגמר של Meta Frontend.",
       "تجربة مطعم متجاوبة أُنشئت لمشروع التخرج في برنامج Meta للواجهات.",
     ),
     details: localized(
       "A usability-led booking flow supported by semantic components, responsive layouts, form validation, and focused interaction tests.",
       "以可用性为核心的预订流程，包含语义化组件、响应式布局、表单校验和关键交互测试。",
-      "以可用性為核心的預訂流程，包含語意化元件、響應式版面、表單驗證和關鍵互動測試。",
+      "以可用性爲核心的預訂流程，包含語意化元件、響應式版面、表單驗證和關鍵互動測試。",
       "תהליך הזמנה מונחה-שימושיות עם רכיבים סמנטיים, layout רספונסיבי, אימות טפסים ובדיקות אינטראקציה.",
       "تدفق حجز يركز على سهولة الاستخدام مع مكونات دلالية وتخطيطات متجاوبة والتحقق من النماذج واختبارات التفاعل.",
     ),
