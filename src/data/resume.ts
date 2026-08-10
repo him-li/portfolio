@@ -120,7 +120,7 @@ export const resumeLabels = {
     "التفاصيل",
   ),
   collapseProject: localized(
-    "Close details",
+    "Collapse details",
     "收起详情",
     "收起詳情",
     "סגירת פרטים",
@@ -492,7 +492,29 @@ export const projects = [
       "مصمم لربط طالبي المساعدة بأفراد المجتمع القريبين، مع اكتشاف الخدمات والطلبات ومسارات الحساب.",
     ),
     stack: ["React", "TypeScript", "Vite", "MUI", "Node.js"],
-    href: "https://him-li.github.io/zelaze-frontend",
+    repositories: [
+      {
+        label: localized(
+          "Frontend repository",
+          "前端仓库",
+          "前端倉庫",
+          "מאגר Frontend",
+          "مستودع الواجهة الأمامية",
+        ),
+        href: "https://github.com/him-li/zelaze-frontend",
+      },
+      {
+        label: localized(
+          "Backend repository",
+          "后端仓库",
+          "後端倉庫",
+          "מאגר Backend",
+          "مستودع الواجهة الخلفية",
+        ),
+        href: "https://github.com/him-li/zelaze-backend",
+      },
+    ],
+    deployment: "https://him-li.github.io/zelaze-frontend",
   },
   {
     id: "llama",
@@ -523,7 +545,29 @@ export const projects = [
       "FastAPI",
       "PostgreSQL",
     ],
-    href: "https://littlellama.vercel.app/",
+    repositories: [
+      {
+        label: localized(
+          "Frontend repository",
+          "前端仓库",
+          "前端倉庫",
+          "מאגר Frontend",
+          "مستودع الواجهة الأمامية",
+        ),
+        href: "https://github.com/him-li/littlellama",
+      },
+      {
+        label: localized(
+          "Backend repository",
+          "后端仓库",
+          "後端倉庫",
+          "מאגר Backend",
+          "مستودع الواجهة الخلفية",
+        ),
+        href: "https://github.com/him-li/littlellama-backend",
+      },
+    ],
+    deployment: "https://littlellama.vercel.app/",
   },
   {
     id: "lemon",
@@ -552,7 +596,19 @@ export const projects = [
       "HTMX",
       "PostgreSQL",
     ],
-    href: "https://littlelemon-xin.vercel.app",
+    repositories: [
+      {
+        label: localized(
+          "View repository",
+          "查看仓库",
+          "查看倉庫",
+          "למאגר",
+          "عرض المستودع",
+        ),
+        href: "https://github.com/him-li/meta_django_littlelemon",
+      },
+    ],
+    deployment: "https://littlelemon-xin.vercel.app",
   },
 ] as const;
 
@@ -572,9 +628,12 @@ export const skillGroups = [
       "JavaScript",
       "Next.js",
       "HTML5",
+      "HTMX",
       "CSS",
       "Tailwind CSS",
       "MUI",
+      "HeroUI",
+      "DaisyUI",
     ],
   },
   {
@@ -589,10 +648,13 @@ export const skillGroups = [
     skills: [
       "Python",
       "FastAPI",
+      "Django",
+      "Flask",
       "Node.js",
       "Express",
       "REST APIs",
       "MongoDB",
+      "PostgreSQL",
       "SQL",
     ],
   },
@@ -618,29 +680,35 @@ export const skillGroups = [
 
 export const languages = [
   {
-    native: "English",
+    native: localized("English", "英语", "英語", "אנגלית", "الإنجليزية"),
     mark: "E",
     level: localized("Fluent", "流利", "流利", "שוטפת", "بطلاقة"),
   },
   {
-    native: "中文",
+    native: localized(
+      "Mandarin Chinese",
+      "汉语普通话",
+      "華語",
+      "סינית",
+      "الصينية",
+    ),
     mark: "中",
     level: localized("Native", "母语", "母語", "שפת אם", "اللغة الأم"),
   },
   {
-    native: "עברית",
+    native: localized("Hebrew", "希伯来语", "希伯來語", "עברית", "العبرية"),
     mark: "ע",
     level: localized("Intermediate", "中级", "中級", "בינונית", "متوسط"),
   },
   {
-    native: "العربية",
-    mark: "ع",
-    level: localized(
-      "Intermediate (MSA)",
-      "中级（现代标准阿拉伯语）",
-      "中級（現代標準阿拉伯語）",
-      "בינונית (MSA)",
-      "متوسط (الفصحى)",
+    native: localized(
+      "Arabic (MSA)",
+      "现代标准阿拉伯语",
+      "現代標準阿拉伯語",
+      "ערבית",
+      "العربية",
     ),
+    mark: "ع",
+    level: localized("Intermediate", "中级", "中級", "בינונית", "متوسط"),
   },
 ] as const;

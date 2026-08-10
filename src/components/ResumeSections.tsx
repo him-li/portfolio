@@ -1,4 +1,9 @@
-import { ArrowUpRight, ChevronDown, SlidersHorizontal, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  ChevronUp,
+  SlidersHorizontal,
+} from "lucide-react";
 import {
   AnimatePresence,
   motion,
@@ -29,6 +34,9 @@ import {
   siSqlite,
   siHeroui,
   siJson,
+  siGithub,
+  siFlask,
+  siFramer,
 } from "simple-icons";
 import {
   education,
@@ -63,8 +71,11 @@ const iconMap = {
   Vite: siVite,
   HTMX: siHtmx,
   SQL: siSqlite,
-  Heroui: siHeroui,
+  HeroUI: siHeroui,
   "JSON Schema": siJson,
+  Github: siGithub,
+  Flask: siFlask,
+  Motion: siFramer,
 };
 
 function SkillIcon({ name }: { name: string }) {
@@ -266,45 +277,42 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                 <span>{statusCopy[project.status]}</span>
                 <h3>{project.title}</h3>
                 <p>{project.description[locale]}</p>
-                <footer>
-                  <div className="project-stack">
-                    {project.stack.map((technology) => (
-                      <InfoChip
-                        icon={<SkillIcon name={technology} />}
-                        key={technology}
-                        variant="soft"
-                      >
-                        {technology}
-                      </InfoChip>
-                    ))}
-                  </div>
-                  <div className="project-actions">
+                <footer className="project-actions">
+                  <InfoChip
+                    expanded={expanded === project.id}
+                    icon={
+                      expanded === project.id ? (
+                        <ChevronUp aria-hidden="true" />
+                      ) : (
+                        <ChevronDown aria-hidden="true" />
+                      )
+                    }
+                    onClick={() =>
+                      setExpanded(expanded === project.id ? null : project.id)
+                    }
+                  >
+                    {expanded === project.id
+                      ? resumeLabels.collapseProject[locale]
+                      : resumeLabels.expandProject[locale]}
+                  </InfoChip>
+                  <InfoChip
+                    href={project.deployment}
+                    icon={<ArrowUpRight aria-hidden="true" />}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {resumeLabels.viewProject[locale]}
+                  </InfoChip>
+                  {project.repositories.map((repo) => (
                     <InfoChip
-                      expanded={expanded === project.id}
-                      icon={
-                        expanded === project.id ? (
-                          <X aria-hidden="true" />
-                        ) : (
-                          <ChevronDown aria-hidden="true" />
-                        )
-                      }
-                      onClick={() =>
-                        setExpanded(expanded === project.id ? null : project.id)
-                      }
-                    >
-                      {expanded === project.id
-                        ? resumeLabels.collapseProject[locale]
-                        : resumeLabels.expandProject[locale]}
-                    </InfoChip>
-                    <InfoChip
-                      href={project.href}
-                      icon={<ArrowUpRight aria-hidden="true" />}
+                      href={repo.href}
+                      icon={<SkillIcon name="Github" />}
                       rel="noreferrer"
                       target="_blank"
                     >
-                      {resumeLabels.viewProject[locale]}
+                      {repo.label[locale]}
                     </InfoChip>
-                  </div>
+                  ))}
                 </footer>
                 <AnimatePresence initial={false}>
                   {expanded === project.id && (
@@ -314,6 +322,17 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                     >
+                      <div className="project-stack">
+                        {project.stack.map((technology) => (
+                          <InfoChip
+                            icon={<SkillIcon name={technology} />}
+                            key={technology}
+                            variant="soft"
+                          >
+                            {technology}
+                          </InfoChip>
+                        ))}
+                      </div>
                       {project.details[locale]}
                     </motion.div>
                   )}
@@ -364,10 +383,9 @@ export function ProfileSection({ locale }: { locale: Locale }) {
                       {language.mark}
                     </span>
                   }
-                  key={language.native}
-                  variant="soft"
+                  key={language.native[locale]}
                 >
-                  {language.native} · {language.level[locale]}
+                  {language.native[locale]} · {language.level[locale]}
                 </InfoChip>
               ))}
             </div>
