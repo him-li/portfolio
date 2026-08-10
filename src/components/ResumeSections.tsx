@@ -18,6 +18,7 @@ import {
   siNextdotjs,
   siNodedotjs,
   siPython,
+  siPostgresql,
   siReact,
   siTailwindcss,
   siTypescript,
@@ -44,6 +45,7 @@ const iconMap = {
   "Tailwind CSS": siTailwindcss,
   MUI: siMui,
   Python: siPython,
+  PostgreSQL: siPostgresql,
   FastAPI: siFastapi,
   "Node.js": siNodedotjs,
   Express: siExpress,
@@ -195,10 +197,13 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
     { id: "developing", label: resumeLabels.developing[locale] },
     { id: "repository", label: resumeLabels.repository[locale] },
   ];
+  const orderedProjects = [...projects].sort(
+    (a, b) => Number(b.status === "featured") - Number(a.status === "featured"),
+  );
   const visibleProjects =
     filter === "all"
-      ? projects
-      : projects.filter((project) => project.status === filter);
+      ? orderedProjects
+      : orderedProjects.filter((project) => project.status === filter);
   return (
     <motion.section
       className="resume-section project-section section-shell"
