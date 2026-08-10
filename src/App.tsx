@@ -1,8 +1,4 @@
-import {
-  ArrowDown,
-  Download,
-  Mail,
-} from "lucide-react";
+import { ArrowDown, Download, Mail } from "lucide-react";
 import {
   motion,
   useReducedMotion,
@@ -31,6 +27,40 @@ function BrandIcon({ path }: { path: string }) {
     <svg aria-hidden="true" viewBox="0 0 24 24">
       <path d={path} />
     </svg>
+  );
+}
+
+function ContactDetails({ size }: { size?: "sm" | "md" | "lg" }) {
+  return (
+    <div className="contact-links">
+      <InfoChip
+        href="mailto:xin.li@outlook.co.il"
+        icon={<Mail aria-hidden="true" />}
+        size={size}
+      >
+        xin.li@outlook.co.il
+      </InfoChip>
+      <InfoChip
+        href="https://linkedin.com/in/xin-li-5387a5169"
+        icon={<BrandIcon path={linkedInPath} />}
+        label="Xin Li on LinkedIn"
+        size={size}
+        target="_blank"
+        rel="noreferrer"
+      >
+        LinkedIn
+      </InfoChip>
+      <InfoChip
+        href="https://github.com/him-li"
+        icon={<BrandIcon path={siGithub.path} />}
+        label="Xin Li on GitHub"
+        size={size}
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub
+      </InfoChip>
+    </div>
   );
 }
 
@@ -73,7 +103,8 @@ export function App() {
             className="hero-copy"
             style={{ y: heroCopyY, opacity: heroOpacity }}
           >
-            <h1>
+            <ContactDetails size="sm" />
+            <h1 className="pt-6">
               {copy.hero.titleBefore} <em>{copy.hero.titleAccent}</em>{" "}
               {copy.hero.titleAfter}
             </h1>
@@ -125,36 +156,7 @@ export function App() {
           <p className="eyebrow">04 / {copy.sections.contactKicker}</p>
           <h2>{copy.sections.contactTitle}</h2>
           <p>{copy.sections.contactBody}</p>
-          <div className="contact-links">
-            <InfoChip
-              href="mailto:xin.li@outlook.co.il"
-              icon={<Mail aria-hidden="true" />}
-              size="lg"
-              variant="solid"
-            >
-              xin.li@outlook.co.il
-            </InfoChip>
-            <InfoChip
-              href="https://linkedin.com/in/xin-li-5387a5169"
-              icon={<BrandIcon path={linkedInPath} />}
-              label="Xin Li on LinkedIn"
-              size="lg"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </InfoChip>
-            <InfoChip
-              href="https://github.com/Him97"
-              icon={<BrandIcon path={siGithub.path} />}
-              label="Xin Li on GitHub"
-              size="lg"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </InfoChip>
-          </div>
+          <ContactDetails size="lg" />
         </section>
       </main>
     </div>
