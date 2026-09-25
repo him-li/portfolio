@@ -1,4 +1,4 @@
-import { ArrowDown, Download, Mail } from "lucide-react";
+import { ArrowDown, Download, Mail, Mountain } from "lucide-react";
 import {
   motion,
   useReducedMotion,
@@ -59,6 +59,16 @@ function ContactDetails({ size }: { size?: "sm" | "md" | "lg" }) {
         rel="noreferrer"
       >
         GitHub
+      </InfoChip>
+      <InfoChip
+        href="https://himalayas.app/@xinli"
+        icon={<Mountain aria-hidden="true" />}
+        label="Xin Li on Himalayas"
+        size={size}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Himalayas
       </InfoChip>
     </div>
   );

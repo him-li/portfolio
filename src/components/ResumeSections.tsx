@@ -210,20 +210,34 @@ export function ExperienceSection({ locale }: { locale: Locale }) {
 export function ProjectsSection({ locale }: { locale: Locale }) {
   const statusCopy = {
     featured: resumeLabels.featured[locale],
+    live: resumeLabels.live[locale],
     developing: resumeLabels.developing[locale],
     repository: resumeLabels.repository[locale],
   };
   const [filter, setFilter] = useState<"all" | ProjectStatus>("all");
   const [expanded, setExpanded] = useState<string | null>(null);
   const reveal = useRevealProps();
-  const filters: Array<{ id: "all" | ProjectStatus; label: string }> = [
+  const projectFilters: Array<{
+    id: "all" | ProjectStatus;
+    label: string;
+  }> = [
     { id: "all", label: resumeLabels.allProjects[locale] },
     { id: "featured", label: resumeLabels.featured[locale] },
+    { id: "live", label: resumeLabels.live[locale] },
     { id: "developing", label: resumeLabels.developing[locale] },
     { id: "repository", label: resumeLabels.repository[locale] },
   ];
+  const filters = projectFilters.filter(
+    ({ id }) => id === "all" || projects.some((project) => project.status === id),
+  );
+  const projectPriority: Record<ProjectStatus, number> = {
+    featured: 0,
+    live: 1,
+    repository: 2,
+    developing: 3,
+  };
   const orderedProjects = [...projects].sort(
-    (a, b) => Number(b.status === "featured") - Number(a.status === "featured"),
+    (a, b) => projectPriority[a.status] - projectPriority[b.status],
   );
   const visibleProjects =
     filter === "all"
@@ -307,6 +321,7 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                     <InfoChip
                       href={repo.href}
                       icon={<SkillIcon name="Github" />}
+                      key={repo.href}
                       rel="noreferrer"
                       target="_blank"
                     >
