@@ -1,12 +1,14 @@
 import {
   ArrowLeft,
   ArrowRight,
+  CircleAlert,
   ExternalLink,
   Send,
   ShieldCheck,
   Sparkles,
+  X,
 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import type { Locale } from "../i18n";
 
 type Mode = "explore" | "role-match";
@@ -58,6 +60,10 @@ const copy = {
     full: "Open the full experience",
     sources: "From this portfolio",
     back: "Back to portfolio",
+    limitError: "The live AI visitor limit has been reached. A curated answer is shown instead.",
+    serviceError: "The live AI is temporarily unavailable. A curated answer is shown instead.",
+    networkError: "The live AI could not be reached. Please check your connection and try again.",
+    dismiss: "Dismiss notification",
     suggestions: [
       "Which project best demonstrates full-stack work?",
       "Summarize Xin’s frontend experience in 30 seconds.",
@@ -79,6 +85,10 @@ const copy = {
     full: "打开完整体验",
     sources: "内容来源",
     back: "返回作品集",
+    limitError: "实时 AI 的访客使用次数已达上限，现已显示精选演示回答。",
+    serviceError: "实时 AI 暂时不可用，现已显示精选演示回答。",
+    networkError: "无法连接实时 AI，请检查网络后重试。",
+    dismiss: "关闭提示",
     suggestions: [
       "哪个项目最能体现全栈能力？",
       "用 30 秒概括 Xin 的前端经验。",
@@ -100,6 +110,10 @@ const copy = {
     full: "開啟完整體驗",
     sources: "內容來源",
     back: "返回作品集",
+    limitError: "即時 AI 的訪客使用次數已達上限，現已顯示精選示範回答。",
+    serviceError: "即時 AI 暫時無法使用，現已顯示精選示範回答。",
+    networkError: "無法連線即時 AI，請檢查網路後再試。",
+    dismiss: "關閉提示",
     suggestions: [
       "哪個專案最能展現全端能力？",
       "用 30 秒概括 Xin 的前端經驗。",
@@ -121,6 +135,10 @@ const copy = {
     full: "לחוויה המלאה",
     sources: "מתוך תיק העבודות",
     back: "חזרה לתיק העבודות",
+    limitError: "הגעתם למגבלת השימוש ב-AI החי. במקום זאת מוצגת תשובה מוכנה.",
+    serviceError: "ה-AI החי אינו זמין כרגע. במקום זאת מוצגת תשובה מוכנה.",
+    networkError: "לא ניתן להתחבר ל-AI החי. בדקו את החיבור ונסו שוב.",
+    dismiss: "סגירת ההתראה",
     suggestions: [
       "איזה פרויקט מדגים יכולת full-stack?",
       "סכמו את ניסיון ה-frontend של Xin.",
@@ -142,6 +160,10 @@ const copy = {
     full: "افتح التجربة الكاملة",
     sources: "من معرض الأعمال",
     back: "العودة إلى معرض الأعمال",
+    limitError: "تم بلوغ حد استخدام الذكاء الاصطناعي المباشر. يتم عرض إجابة جاهزة بدلاً منه.",
+    serviceError: "الذكاء الاصطناعي المباشر غير متاح مؤقتاً. يتم عرض إجابة جاهزة بدلاً منه.",
+    networkError: "تعذر الاتصال بالذكاء الاصطناعي المباشر. تحقق من اتصالك وحاول مرة أخرى.",
+    dismiss: "إغلاق التنبيه",
     suggestions: [
       "أي مشروع يوضح خبرة full-stack؟",
       "لخّص خبرة Xin في الواجهات الأمامية.",
@@ -186,6 +208,13 @@ function AskXinWorkspace({ locale, expanded = false }: { locale: Locale; expande
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState<Answer | null>(null);
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timeout = window.setTimeout(() => setToast(null), 6000);
+    return () => window.clearTimeout(timeout);
+  }, [toast]);
 
   async function submit(event?: FormEvent) {
     event?.preventDefault();
@@ -199,9 +228,14 @@ function AskXinWorkspace({ locale, expanded = false }: { locale: Locale; expande
         body: JSON.stringify({ question: value, mode, locale, website: "" }),
       });
       const payload = (await response.json()) as Answer & { error?: string };
-      if (!response.ok) throw new Error(payload.error || "Unavailable");
+      if (!response.ok) {
+        setToast(response.status === 429 ? text.limitError : text.serviceError);
+        setAnswer(demoAnswer(locale, mode));
+        return;
+      }
       setAnswer(payload);
-    } catch {
+    } catch (error) {
+      setToast(error instanceof TypeError ? text.networkError : text.serviceError);
       setAnswer(demoAnswer(locale, mode));
     } finally {
       setLoading(false);
@@ -270,6 +304,16 @@ function AskXinWorkspace({ locale, expanded = false }: { locale: Locale; expande
           <div className="ask-xin-empty"><Sparkles size={22} /><span>{text.suggestions[0]}</span></div>
         )}
       </div>
+
+      {toast && (
+        <div className="ask-xin-toast" role="alert" aria-live="assertive">
+          <CircleAlert aria-hidden="true" size={19} />
+          <span>{toast}</span>
+          <button type="button" onClick={() => setToast(null)} aria-label={text.dismiss}>
+            <X aria-hidden="true" size={17} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
