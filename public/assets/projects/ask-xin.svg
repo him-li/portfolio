@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Ask Xin portfolio copilot</title>
+  <desc id="desc">Abstract conversational interface with an orbital AI mark</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#171914"/>
+      <stop offset="1" stop-color="#292d24"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ee7757"/>
+      <stop offset="1" stop-color="#b8c66e"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="55"/></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1340" cy="80" r="310" fill="#ee7757" opacity=".18" filter="url(#blur)"/>
+  <circle cx="180" cy="940" r="300" fill="#b8c66e" opacity=".14" filter="url(#blur)"/>
+  <g fill="none" stroke="url(#accent)" stroke-width="6" opacity=".9" transform="translate(290 275)">
+    <ellipse cx="250" cy="225" rx="250" ry="104" transform="rotate(-18 250 225)"/>
+    <ellipse cx="250" cy="225" rx="250" ry="104" transform="rotate(46 250 225)"/>
+    <circle cx="250" cy="225" r="54" fill="#f3f0e8" stroke="none"/>
+    <circle cx="63" cy="347" r="16" fill="#ee7757" stroke="none"/>
+  </g>
+  <g transform="translate(790 215)">
+    <rect width="590" height="570" rx="42" fill="#f3f0e8"/>
+    <rect x="44" y="44" width="198" height="44" rx="22" fill="#25231f"/>
+    <rect x="44" y="124" width="420" height="22" rx="11" fill="#d8d2c5"/>
+    <rect x="44" y="160" width="315" height="22" rx="11" fill="#d8d2c5"/>
+    <rect x="44" y="226" width="502" height="144" rx="24" fill="#ffffff" stroke="#d8d2c5" stroke-width="3"/>
+    <circle cx="498" cy="326" r="25" fill="#ee7757"/>
+    <path d="m489 326 8 8 14-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="44" y="406" width="502" height="118" rx="24" fill="#25231f"/>
+    <rect x="74" y="438" width="312" height="14" rx="7" fill="#f3f0e8" opacity=".9"/>
+    <rect x="74" y="472" width="402" height="14" rx="7" fill="#f3f0e8" opacity=".45"/>
+  </g>
+</svg>

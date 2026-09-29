@@ -8,6 +8,7 @@ import {
 import { useRef } from "react";
 import { siGithub } from "simple-icons";
 import { Header } from "./components/Header";
+import { AskXinPage, AskXinSection } from "./components/AskXin";
 import { InfoChip } from "./components/InfoChip";
 import { OrbitMark } from "./components/OrbitMark";
 import {
@@ -98,6 +99,14 @@ export function App() {
   );
   const heroOpacity = useTransform(heroProgress, [0, 0.82], [1, 0.22]);
 
+  if (window.location.pathname.replace(/\/$/, "") === "/ask-xin") {
+    return (
+      <div className="app" lang={locale} dir={direction}>
+        <AskXinPage locale={locale} />
+      </div>
+    );
+  }
+
   return (
     <div className="app" lang={locale} dir={direction}>
       <motion.div
@@ -163,10 +172,13 @@ export function App() {
         <ProjectsSection locale={locale} />
         <ProfileSection locale={locale} />
         <section className="content-section section-shell contact" id="contact">
-          <p className="eyebrow">04 / {copy.sections.contactKicker}</p>
-          <h2>{copy.sections.contactTitle}</h2>
-          <p>{copy.sections.contactBody}</p>
-          <ContactDetails size="lg" />
+          <AskXinSection locale={locale} embedded />
+          <div className="contact-copy">
+            <p className="eyebrow">04 / {copy.sections.contactKicker}</p>
+            <h2>{copy.sections.contactTitle}</h2>
+            <p>{copy.sections.contactBody}</p>
+            <ContactDetails size="lg" />
+          </div>
         </section>
       </main>
     </div>

@@ -312,8 +312,8 @@ export function ProjectsSection({ locale }: { locale: Locale }) {
                   <InfoChip
                     href={project.deployment}
                     icon={<ArrowUpRight aria-hidden="true" />}
-                    rel="noreferrer"
-                    target="_blank"
+                    rel={project.deployment.startsWith("http") ? "noreferrer" : undefined}
+                    target={project.deployment.startsWith("http") ? "_blank" : undefined}
                   >
                     {resumeLabels.viewProject[locale]}
                   </InfoChip>

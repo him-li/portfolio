@@ -480,6 +480,39 @@ export const education = [
 
 export const projects = [
   {
+    id: "ask-xin",
+    status: "featured" as ProjectStatus,
+    image: "/assets/projects/ask-xin.svg",
+    title: "Ask Xin",
+    description: localized(
+      "A secure, multilingual AI copilot that turns this portfolio into an interactive conversation.",
+      "一个安全、多语言的 AI 助手，让访客可以通过对话了解这份作品集。",
+      "一個安全、多語言的 AI 助手，讓訪客可以透過對話了解這份作品集。",
+      "עוזר AI מאובטח ורב-לשוני שהופך את תיק העבודות לשיחה אינטראקטיבית.",
+      "مساعد ذكاء اصطناعي آمن ومتعدد اللغات يحول معرض الأعمال إلى محادثة تفاعلية.",
+    ),
+    details: localized(
+      "A production-oriented consolidation of IBM AI course prototypes. It combines grounded portfolio answers, evidence-based role matching, model-provider adapters, guarded serverless inference, citation allowlisting, rate limits, and a no-key demo fallback.",
+      "将多个 IBM AI 课程原型整合成面向生产的项目：包括基于作品集事实的问答、职位匹配、模型适配层、安全的无服务器推理、引用白名单、访问限流，以及无密钥演示降级。",
+      "將多個 IBM AI 課程原型整合成面向正式環境的專案：包含依據作品集事實的問答、職位匹配、模型適配層、安全的無伺服器推理、引用白名單、存取限流與無金鑰示範降級。",
+      "איחוד מוכן-לפרודקשן של אבות-טיפוס מקורסי AI של IBM, עם תשובות מבוססות-מקור, התאמת תפקידים, שכבת ספקי מודלים, פונקציית serverless מוגנת, ציטוטים מוגבלים, rate limiting ומצב הדגמה.",
+      "دمج موجه للإنتاج لنماذج أولية من دورات IBM AI، مع إجابات موثقة ومطابقة وظائف وطبقة موفري نماذج واستدلال serverless محمي وحدود استخدام ووضع عرض احتياطي.",
+    ),
+    stack: ["React", "TypeScript", "Vite", "Gemini API", "Vercel Functions", "Prompt Engineering"],
+    repositories: [
+      { label: localized("Career coach", "职业教练", "職涯教練", "מאמן קריירה", "مدرب مهني"), href: "https://github.com/him-li/ai-career-coach" },
+      { label: localized("Meeting companion", "会议助手", "會議助手", "עוזר פגישות", "مساعد اجتماعات"), href: "https://github.com/him-li/ai-meeting-companion-stt" },
+      { label: localized("Voice translator", "语音翻译", "語音翻譯", "תרגום קולי", "مترجم صوتي"), href: "https://github.com/him-li/translator-with-voice-and-watsonx" },
+      { label: localized("Voice chat", "语音聊天", "語音聊天", "צ'אט קולי", "دردشة صوتية"), href: "https://github.com/him-li/bkrva-chatapp-with-voice-and-openai-outline" },
+      { label: localized("Document Q&A", "文档问答", "文件問答", "שאלות על מסמכים", "أسئلة المستندات"), href: "https://github.com/him-li/wbphl-build_own_chatbot_without_open_ai" },
+      { label: localized("Chatbot", "聊天机器人", "聊天機器人", "צ'אטבוט", "روبوت محادثة"), href: "https://github.com/him-li/chatbot" },
+      { label: localized("Image captioning", "图片描述", "圖片描述", "תיאור תמונות", "وصف الصور"), href: "https://github.com/him-li/photos-captioning" },
+      { label: localized("Emotion detection", "情绪识别", "情緒辨識", "זיהוי רגשות", "اكتشاف المشاعر"), href: "https://github.com/him-li/oaqjp-final-project-emb-ai" },
+      { label: localized("Sentiment analysis", "情感分析", "情感分析", "ניתוח סנטימנט", "تحليل الانطباع"), href: "https://github.com/him-li/zzrjt-practice-project-emb-ai" },
+    ],
+    deployment: "/ask-xin",
+  },
+  {
     id: "zelaze",
     status: "repository" as ProjectStatus,
     image: "/assets/projects/zelaze.png",
