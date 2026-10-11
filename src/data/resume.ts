@@ -314,6 +314,37 @@ export const experiences = [
 
 export const education = [
   {
+    id: "ibm-ai-developer",
+    image: "/assets/education/ibm_ai_developer_cover.png",
+    period: "2026",
+    school: localized(
+      "IBM · Coursera",
+      "IBM · Coursera",
+      "IBM · Coursera",
+      "IBM · Coursera",
+      "IBM · Coursera",
+    ),
+    title: localized(
+      "IBM AI Developer Professional Certificate",
+      "IBM 人工智能开发者专业证书",
+      "IBM AI 開發者專業證書",
+      "תעודה מקצועית למפתחי AI של IBM",
+      "شهادة IBM المهنية لمطوري الذكاء الاصطناعي",
+    ),
+    certificates: [
+      {
+        label: localized(
+          "View certificate",
+          "查看证书",
+          "查看證書",
+          "לצפייה בתעודה",
+          "عرض الشهادة",
+        ),
+        href: "https://www.coursera.org/account/accomplishments/specialization/NBJ7V3CADMLM",
+      },
+    ],
+  },
+  {
     id: "huji",
     period: "2020–2021",
     image: "/assets/education/hebrew-university.jpg",
