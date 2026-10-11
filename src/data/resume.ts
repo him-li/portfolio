@@ -33,20 +33,8 @@ export const resumeLabels = {
     "למה עבדתי עליו",
     "ما الذي عملت عليه",
   ),
-  hideDetails: localized(
-    "Show less",
-    "收起",
-    "收起",
-    "פחות פרטים",
-    "عرض أقل",
-  ),
-  projects: localized(
-    "Projects",
-    "项目",
-    "專案",
-    "פרויקטים",
-    "المشاريع",
-  ),
+  hideDetails: localized("Show less", "收起", "收起", "פחות פרטים", "عرض أقل"),
+  projects: localized("Projects", "项目", "專案", "פרויקטים", "المشاريع"),
   projectsTitle: localized(
     "Things I’ve built and learned from.",
     "一些我认真做过，也从中成长的项目。",
@@ -154,7 +142,7 @@ export const experiences = [
       "تل أبيب، إسرائيل",
     ),
     period: "2024–2026",
-    logo: "/assets/experiences/realeye_logo.PNG",
+    logo: "/assets/experiences/realeye_logo.jpg",
     cover: "/assets/experiences/realeye_cover.jpg",
     skills: [
       "React",
@@ -529,17 +517,105 @@ export const projects = [
       "איחוד מוכן-לפרודקשן של אבות-טיפוס מקורסי AI של IBM, עם תשובות מבוססות-מקור, התאמת תפקידים, שכבת ספקי מודלים, פונקציית serverless מוגנת, ציטוטים מוגבלים, rate limiting ומצב הדגמה.",
       "دمج موجه للإنتاج لنماذج أولية من دورات IBM AI، مع إجابات موثقة ومطابقة وظائف وطبقة موفري نماذج واستدلال serverless محمي وحدود استخدام ووضع عرض احتياطي.",
     ),
-    stack: ["React", "TypeScript", "Vite", "Gemini API", "Vercel Functions", "Prompt Engineering"],
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Gemini API",
+      "Vercel Functions",
+      "Prompt Engineering",
+    ],
     repositories: [
-      { label: localized("Career coach", "职业教练", "職涯教練", "מאמן קריירה", "مدرب مهني"), href: "https://github.com/him-li/ai-career-coach" },
-      { label: localized("Meeting companion", "会议助手", "會議助手", "עוזר פגישות", "مساعد اجتماعات"), href: "https://github.com/him-li/ai-meeting-companion-stt" },
-      { label: localized("Voice translator", "语音翻译", "語音翻譯", "תרגום קולי", "مترجم صوتي"), href: "https://github.com/him-li/translator-with-voice-and-watsonx" },
-      { label: localized("Voice chat", "语音聊天", "語音聊天", "צ'אט קולי", "دردشة صوتية"), href: "https://github.com/him-li/bkrva-chatapp-with-voice-and-openai-outline" },
-      { label: localized("Document Q&A", "文档问答", "文件問答", "שאלות על מסמכים", "أسئلة المستندات"), href: "https://github.com/him-li/wbphl-build_own_chatbot_without_open_ai" },
-      { label: localized("Chatbot", "聊天机器人", "聊天機器人", "צ'אטבוט", "روبوت محادثة"), href: "https://github.com/him-li/chatbot" },
-      { label: localized("Image captioning", "图片描述", "圖片描述", "תיאור תמונות", "وصف الصور"), href: "https://github.com/him-li/photos-captioning" },
-      { label: localized("Emotion detection", "情绪识别", "情緒辨識", "זיהוי רגשות", "اكتشاف المشاعر"), href: "https://github.com/him-li/oaqjp-final-project-emb-ai" },
-      { label: localized("Sentiment analysis", "情感分析", "情感分析", "ניתוח סנטימנט", "تحليل الانطباع"), href: "https://github.com/him-li/zzrjt-practice-project-emb-ai" },
+      {
+        label: localized(
+          "Career coach",
+          "职业教练",
+          "職涯教練",
+          "מאמן קריירה",
+          "مدرب مهني",
+        ),
+        href: "https://github.com/him-li/ai-career-coach",
+      },
+      {
+        label: localized(
+          "Meeting companion",
+          "会议助手",
+          "會議助手",
+          "עוזר פגישות",
+          "مساعد اجتماعات",
+        ),
+        href: "https://github.com/him-li/ai-meeting-companion-stt",
+      },
+      {
+        label: localized(
+          "Voice translator",
+          "语音翻译",
+          "語音翻譯",
+          "תרגום קולי",
+          "مترجم صوتي",
+        ),
+        href: "https://github.com/him-li/translator-with-voice-and-watsonx",
+      },
+      {
+        label: localized(
+          "Voice chat",
+          "语音聊天",
+          "語音聊天",
+          "צ'אט קולי",
+          "دردشة صوتية",
+        ),
+        href: "https://github.com/him-li/bkrva-chatapp-with-voice-and-openai-outline",
+      },
+      {
+        label: localized(
+          "Document Q&A",
+          "文档问答",
+          "文件問答",
+          "שאלות על מסמכים",
+          "أسئلة المستندات",
+        ),
+        href: "https://github.com/him-li/wbphl-build_own_chatbot_without_open_ai",
+      },
+      {
+        label: localized(
+          "Chatbot",
+          "聊天机器人",
+          "聊天機器人",
+          "צ'אטבוט",
+          "روبوت محادثة",
+        ),
+        href: "https://github.com/him-li/chatbot",
+      },
+      {
+        label: localized(
+          "Image captioning",
+          "图片描述",
+          "圖片描述",
+          "תיאור תמונות",
+          "وصف الصور",
+        ),
+        href: "https://github.com/him-li/photos-captioning",
+      },
+      {
+        label: localized(
+          "Emotion detection",
+          "情绪识别",
+          "情緒辨識",
+          "זיהוי רגשות",
+          "اكتشاف المشاعر",
+        ),
+        href: "https://github.com/him-li/oaqjp-final-project-emb-ai",
+      },
+      {
+        label: localized(
+          "Sentiment analysis",
+          "情感分析",
+          "情感分析",
+          "ניתוח סנטימנט",
+          "تحليل الانطباع",
+        ),
+        href: "https://github.com/him-li/zzrjt-practice-project-emb-ai",
+      },
     ],
     deployment: "/ask-xin",
   },
@@ -727,13 +803,7 @@ export const projects = [
 export const skillGroups = [
   {
     id: "frontend",
-    title: localized(
-      "Frontend",
-      "前端",
-      "前端",
-      "Frontend",
-      "الواجهات",
-    ),
+    title: localized("Frontend", "前端", "前端", "Frontend", "الواجهات"),
     skills: [
       "React",
       "TypeScript",
